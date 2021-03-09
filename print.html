@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="tutorials/index.html"><strong aria-hidden="true">2.</strong> Tutorials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/1.0/index.html"><strong aria-hidden="true">2.1.</strong> IOTA 1.0</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/1.0/setup.html"><strong aria-hidden="true">2.1.1.</strong> Setup HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/1.0/private_tangle.html"><strong aria-hidden="true">2.1.2.</strong> Run a private Tangle</a></li><li class="chapter-item expanded "><a href="tutorials/1.0/entry_node.html"><strong aria-hidden="true">2.1.3.</strong> Hosting An Entry Node</a></li></ol></li><li class="chapter-item expanded "><a href="tutorials/1.5/index.html"><strong aria-hidden="true">2.2.</strong> Chrysalis IOTA 1.5</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/1.5/build.html"><strong aria-hidden="true">2.2.1.</strong> Build HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/1.5/run.html"><strong aria-hidden="true">2.2.2.</strong> Run HORNET</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="api-reference.html"><strong aria-hidden="true">3.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">5.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="Contribution.html"><strong aria-hidden="true">6.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="code_of_conduct.html"><strong aria-hidden="true">7.</strong> Code of Conduct</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="tutorials/index.html"><strong aria-hidden="true">2.</strong> Tutorials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/1.0/index.html"><strong aria-hidden="true">2.1.</strong> IOTA 1.0</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/1.0/setup.html"><strong aria-hidden="true">2.1.1.</strong> Setup HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/1.0/private_tangle.html"><strong aria-hidden="true">2.1.2.</strong> Run a private Tangle</a></li><li class="chapter-item expanded "><a href="tutorials/1.0/entry_node.html"><strong aria-hidden="true">2.1.3.</strong> Hosting An Entry Node</a></li></ol></li><li class="chapter-item expanded "><a href="tutorials/1.5/index.html"><strong aria-hidden="true">2.2.</strong> Chrysalis IOTA 1.5</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/1.5/build.html"><strong aria-hidden="true">2.2.1.</strong> Build HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/1.5/run.html"><strong aria-hidden="true">2.2.2.</strong> Run HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/1.5/private_tangle.html"><strong aria-hidden="true">2.2.3.</strong> Run a private tangle</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="api-reference.html"><strong aria-hidden="true">3.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">5.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="Contribution.html"><strong aria-hidden="true">6.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="code_of_conduct.html"><strong aria-hidden="true">7.</strong> Code of Conduct</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -244,6 +244,7 @@ sudo apt install hornet
 <ul>
 <li><a href="tutorials/./1.5/build.html">Build HORNET</a></li>
 <li><a href="tutorials/./1.5/run.html">Run HORNET</a></li>
+<li><a href="tutorials/./1.5/private_tangle.html">Run a private tangle</a></li>
 </ul>
 </li>
 </ul>
@@ -620,6 +621,7 @@ It will return an http status code 200 if everything is OK.</p>
 <ul>
 <li><a href="tutorials/1.5/./build.html">Build HORNET</a></li>
 <li><a href="tutorials/1.5/./run.html">Run HORNET</a></li>
+<li><a href="tutorials/1.5/./private_tangle.html">Run a private tangle</a></li>
 </ul>
 <p>This is a small tutorial on how to build HORNET.</p>
 <p><strong>Note: This tutorial assumes that you are using Ubuntu. The setup and build process may differ on other OS.</strong></p>
@@ -688,6 +690,38 @@ Test, if the build was successful:</p>
               ██║  ██║╚██████╔╝██║  ██║██║ ╚████║███████╗   ██║
               ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝
 </code></pre>
+<p>This is a small tutorial on how to run your own private <a href="https://chrysalis.iota.org/">Chrysalis</a> tangle.</p>
+<p>We will need to set up <a href="https://docs.iota.org/docs/getting-started/1.1/the-tangle/the-coordinator">a coordinator</a> and at least one additional <a href="https://docs.iota.org/docs/getting-started/1.1/running-nodes/overview">node</a> and distribute some tokens to an address that we can manage using a wallet. We will do this by running some scripts from the <em>alphanet</em> folder that you will find in the HORNET respository.</p>
+<h3 id="preparations-4"><a class="header" href="#preparations-4">Preparations</a></h3>
+<ul>
+<li><a href="tutorials/1.5/./build.html">Build HORNET</a></li>
+<li>Get a wallet built for Chrysalis (for example <a href="https://github.com/iotaledger/cli-wallet">the cli-wallet</a>)</li>
+</ul>
+<h3 id="configuration-3"><a class="header" href="#configuration-3">Configuration</a></h3>
+<p>The scripts in the <em>alphanet</em> folder of the HORNET repository, which we will use to run the coordinator and the nodes, are preconfigured. By default they will distribute the tokens to the following address:</p>
+<pre><code>atoi1qraeme05jv3emlcktet5asl4hc837kjvne8ly45ddvfhg30tunl5q7097cy
+</code></pre>
+<p>If you want to use an existing address, search for your address in <a href="https://explorer.iota.org/chrysalis">the Chrysalis explorer</a> and look for the corresponding ED25519 address. Find the <em>create_snapshot_alphanet</em> script in the <em>alphanet</em> directory and change the following line to use your ED25519 address:</p>
+<pre><code class="language-bash">...
+go run &quot;..\main.go&quot; tool snapgen alphanet1 [ADDRESS] 1000000000 &quot;snapshots\alphanet1\full_export.bin&quot;
+...
+</code></pre>
+<h3 id="start-the-coordinator"><a class="header" href="#start-the-coordinator">Start the coordinator</a></h3>
+<p>In the HORNET repository, change to the <em>alphanet</em> directory and run the <em>run_coo_bootstrap</em> script. This will create all files needed to run the network and distribute the tokens to the address we configured. It will also start the coordinator.</p>
+<p>In subsequent starts we can use the <em>run_coo</em> script, to skip the bootstrap step.</p>
+<h3 id="start-additional-nodes"><a class="header" href="#start-additional-nodes">Start additional nodes</a></h3>
+<p>To start additional nodes we simply use the additional <em>run</em> scripts provided in the <em>alphanet</em> folder. We can run them on the same device, as they are preconfigured to listen on different ports.</p>
+<p>Congratulations, you are now running a private network! To monitor your coordinator, you can find the dashboard at <a href="http://localhost:8081">http://localhost:8081</a>.</p>
+<h3 id="use-a-wallet-to-manage-the-tokens"><a class="header" href="#use-a-wallet-to-manage-the-tokens">Use a wallet to manage the tokens</a></h3>
+<p>To easily access the tokens on the network, we need to take one more step. If you used the default configuration, use the following mnemonic to set up a wallet:</p>
+<pre><code>social wolf hungry label salute hover sudden rain disease upgrade throw quick amazing clinic night
+</code></pre>
+<p>Now connect your wallet to one of the nodes that are running and you should be able to find the tokens distributed to your wallet.</p>
+<p>Using <a href="https://github.com/iotaledger/cli-wallet">the cli-wallet</a>, the commands would be:</p>
+<pre><code class="language-bash">&gt; wallet mnemonic &quot;social wolf hungry label salute hover sudden rain disease upgrade throw quick amazing clinic night&quot;
+&gt; wallet new --node &quot;http://localhost:14266&quot; --alias EXAMPLE
+</code></pre>
+<p>You are now all set to start using your own private tangle!</p>
 <h1 id="api-reference"><a class="header" href="#api-reference">API Reference</a></h1>
 <p>This document specifies the REST API for IOTA node software:</p>
 <ul>
