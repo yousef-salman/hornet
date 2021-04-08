@@ -818,7 +818,7 @@ You can always get the most up-to-date description of the config parameters by r
 <hr />
 <h2 id="1-rest-api"><a class="header" href="#1-rest-api">1. REST API</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
-<tr><td align="left"><a href="configuration/config.html#basic-auth">basicAuth</a></td><td align="left">config for basic auth</td><td align="left">object</td></tr>
+<tr><td align="left"><a href="configuration/config.html#jwt-auth">jwtAuth</a></td><td align="left">config for JWT auth</td><td align="left">object</td></tr>
 <tr><td align="left">permittedRoutes</td><td align="left">the allowed HTTP REST routes which can be called from non whitelisted addresses</td><td align="left">array of strings</td></tr>
 <tr><td align="left">whitelistedAddresses</td><td align="left">the whitelist of addresses which are allowed to access the REST API</td><td align="left">array of strings</td></tr>
 <tr><td align="left">bindAddress</td><td align="left">the bind address on which the REST API listens on</td><td align="left">string</td></tr>
@@ -827,12 +827,10 @@ You can always get the most up-to-date description of the config parameters by r
 <tr><td align="left"><a href="configuration/config.html#limits">limits</a></td><td align="left">config for api limits</td><td align="left">object</td></tr>
 <tr><td align="left">excludeHealthCheckFromAuth</td><td align="left">whether to allow the health check route anyways</td><td align="left">bool</td></tr>
 </tbody></table>
-<h3 id="basic-auth"><a class="header" href="#basic-auth">Basic auth</a></h3>
+<h3 id="jwt-auth"><a class="header" href="#jwt-auth">JWT Auth</a></h3>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
-<tr><td align="left">enabled</td><td align="left">whether to use HTTP basic auth for the REST API</td><td align="left">bool</td></tr>
-<tr><td align="left">userName</td><td align="left">the username of the HTTP basic auth</td><td align="left">string</td></tr>
-<tr><td align="left">passwordHash</td><td align="left">the HTTP basic auth password+salt as a scrypt hash</td><td align="left">string</td></tr>
-<tr><td align="left">passwordSalt</td><td align="left">the HTTP basic auth salt used for hashing the password</td><td align="left">string</td></tr>
+<tr><td align="left">enabled</td><td align="left">whether to use JWT auth for the REST API</td><td align="left">bool</td></tr>
+<tr><td align="left">salt</td><td align="left">salt used inside the JWT tokens for the REST API. Change this to a different value to invalidate JWT tokens not matching this new value</td><td align="left">string</td></tr>
 </tbody></table>
 <h3 id="limits"><a class="header" href="#limits">Limits</a></h3>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
@@ -841,12 +839,7 @@ You can always get the most up-to-date description of the config parameters by r
 </tbody></table>
 <p>Example:</p>
 <pre><code class="language-json">  &quot;restAPI&quot;: {
-    &quot;basicAuth&quot;: {
-      &quot;enabled&quot;: false,
-      &quot;userName&quot;: &quot;admin&quot;,
-      &quot;passwordHash&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000&quot;,
-      &quot;passwordSalt&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000&quot;
-    },
+    &quot;authEnabled&quot;: false,
     &quot;excludeHealthCheckFromAuth&quot;: false,
     &quot;permittedRoutes&quot;: [
       &quot;/health&quot;,
