@@ -730,10 +730,11 @@ go run &quot;..\main.go&quot; tool snapgen alphanet1 [ADDRESS] 1000000000 &quot;
 <h1 id="configjson"><a class="header" href="#configjson">config.json</a></h1>
 <p>Hornet uses the JSON standard as config file. If you are unsure about some syntax have a look at the official specs <a href="https://www.json.org">here</a>.
 The default config file is <code>config.json</code>. You can change the path or name of the config file by using the <code>-c</code> or <code>--config</code> flag.
-For Example: <code>hornet -c config_example.json</code>.<br />
+For Example: <code>hornet -c config_example.json</code>.
 You can always get the most up-to-date description of the config parameters by running <code>hornet -h --full</code>.</p>
 <h2 id="table-of-content"><a class="header" href="#table-of-content">Table of content</a></h2>
 <ul>
+<li><a href="configuration/config.html#table-of-content">Table of content</a></li>
 <li><a href="configuration/config.html#1-rest-api">1. REST API</a>
 <ul>
 <li><a href="configuration/config.html#basic-auth">Basic auth</a></li>
@@ -757,15 +758,16 @@ You can always get the most up-to-date description of the config parameters by r
 <li><a href="configuration/config.html#publickeyranges">PublicKeyRanges</a></li>
 </ul>
 </li>
-<li><a href="configuration/config.html#7-requests">7. Requests</a></li>
-<li><a href="configuration/config.html#8-coordinator">8. Coordinator</a>
+<li><a href="configuration/config.html#7-proof-of-work">7. Proof of Work</a></li>
+<li><a href="configuration/config.html#8-requests">8. Requests</a></li>
+<li><a href="configuration/config.html#9-coordinator">9. Coordinator</a>
 <ul>
 <li><a href="configuration/config.html#checkpoints">Checkpoints</a></li>
 <li><a href="configuration/config.html#quorum">Quorum</a>
 <ul>
 <li><a href="configuration/config.html#groups">Groups</a>
 <ul>
-<li><a href="configuration/config.html#-group-name-">{GROUP_NAME}</a></li>
+<li><a href="configuration/config.html#group_name">{GROUP_NAME}</a></li>
 </ul>
 </li>
 </ul>
@@ -774,14 +776,14 @@ You can always get the most up-to-date description of the config parameters by r
 <li><a href="configuration/config.html#tipsel">Tipsel</a></li>
 </ul>
 </li>
-<li><a href="configuration/config.html#9-tipsel">9. Tipsel</a>
+<li><a href="configuration/config.html#10-tipsel">10. Tipsel</a>
 <ul>
 <li><a href="configuration/config.html#nonlazy">NonLazy</a></li>
 <li><a href="configuration/config.html#semilazy">SemiLazy</a></li>
 </ul>
 </li>
-<li><a href="configuration/config.html#10-node">10. Node</a></li>
-<li><a href="configuration/config.html#11-p2p">11. P2P</a>
+<li><a href="configuration/config.html#11-node">11. Node</a></li>
+<li><a href="configuration/config.html#12-p2p">12. P2P</a>
 <ul>
 <li><a href="configuration/config.html#connectionmanager">ConnectionManager</a></li>
 <li><a href="configuration/config.html#peerstore">PeerStore</a></li>
@@ -1002,7 +1004,16 @@ You can always get the most up-to-date description of the config parameters by r
     ]
   },
 </code></pre>
-<h2 id="7-requests"><a class="header" href="#7-requests">7. Requests</a></h2>
+<h2 id="7-proof-of-work"><a class="header" href="#7-proof-of-work">7. Proof of Work</a></h2>
+<table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
+<tr><td align="left">refreshTipsInterval</td><td align="left">interval for refreshing tips during PoW for spammer messages and messages passed without parents via API</td><td align="left">string</td></tr>
+</tbody></table>
+<p>Example:</p>
+<pre><code class="language-json">  &quot;pow&quot;: {
+    &quot;refreshTipsInterval&quot;: &quot;5s&quot;
+  },
+</code></pre>
+<h2 id="8-requests"><a class="header" href="#8-requests">8. Requests</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">discardOlderThan</td><td align="left">the maximum time a request stays in the request queue</td><td align="left">string</td></tr>
 <tr><td align="left">pendingReEnqueueInterval</td><td align="left">the interval the pending requests are re-enqueued</td><td align="left">string</td></tr>
@@ -1013,7 +1024,7 @@ You can always get the most up-to-date description of the config parameters by r
     &quot;pendingReEnqueueInterval&quot;: &quot;5s&quot;
   },
 </code></pre>
-<h2 id="8-coordinator"><a class="header" href="#8-coordinator">8. Coordinator</a></h2>
+<h2 id="9-coordinator"><a class="header" href="#9-coordinator">9. Coordinator</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left"><a href="configuration/config.html#checkpoints">checkpoints</a></td><td align="left">config for checkpoints</td><td align="left">object</td></tr>
 <tr><td align="left">interval</td><td align="left">the interval milestones are issued</td><td align="left">string</td></tr>
@@ -1098,7 +1109,7 @@ You can always get the most up-to-date description of the config parameters by r
     }
   },
 </code></pre>
-<h2 id="9-tipsel"><a class="header" href="#9-tipsel">9. Tipsel</a></h2>
+<h2 id="10-tipsel"><a class="header" href="#10-tipsel">10. Tipsel</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">maxDeltaMsgYoungestConeRootIndexToCMI</td><td align="left">the maximum allowed delta value for the YCRI of a given message in relation to the current CMI before it gets lazy</td><td align="left">integer</td></tr>
 <tr><td align="left">maxDeltaMsgOldestConeRootIndexToCMI</td><td align="left">the maximum allowed delta value between OCRI of a given message in relation to the current CMI before it gets semi-lazy</td><td align="left">integer</td></tr>
@@ -1139,10 +1150,10 @@ You can always get the most up-to-date description of the config parameters by r
     }
   },
 </code></pre>
-<h2 id="10-node"><a class="header" href="#10-node">10. Node</a></h2>
+<h2 id="11-node"><a class="header" href="#11-node">11. Node</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">alias</td><td align="left">the alias to identify a node</td><td align="left">string</td></tr>
-<tr><td align="left">profile</td><td align="left">Sets the profile with which the node runs</td><td align="left">string</td></tr>
+<tr><td align="left">profile</td><td align="left">the profile the node runs with</td><td align="left">string</td></tr>
 <tr><td align="left">disablePlugins</td><td align="left">a list of plugins that shall be disabled</td><td align="left">array of strings</td></tr>
 <tr><td align="left">enablePlugins</td><td align="left">a list of plugins that shall be enabled</td><td align="left">array of strings</td></tr>
 </tbody></table>
@@ -1159,7 +1170,7 @@ You can always get the most up-to-date description of the config parameters by r
     ]
   },
 </code></pre>
-<h2 id="11-p2p"><a class="header" href="#11-p2p">11. P2P</a></h2>
+<h2 id="12-p2p"><a class="header" href="#12-p2p">12. P2P</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">bindMultiAddresses</td><td align="left">the bind addresses for this node</td><td align="left">array of strings</td></tr>
 <tr><td align="left"><a href="configuration/config.html#connectionmanager">connectionManager</a></td><td align="left">config for connection manager</td><td align="left">object</td></tr>
@@ -1216,7 +1227,7 @@ You can always get the most up-to-date description of the config parameters by r
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">advancementRange</td><td align="left">the used advancement range per warpsync checkpoint</td><td align="left">integer</td></tr>
 </tbody></table>
-<p>Example: </p>
+<p>Example:</p>
 <pre><code class="language-json">  &quot;warpsync&quot;: {
     &quot;advancementRange&quot;: 150,
   }
@@ -1231,7 +1242,7 @@ You can always get the most up-to-date description of the config parameters by r
 <tr><td align="left">workers</td><td align="left">the amount of parallel running spammers</td><td align="left">integer</td></tr>
 <tr><td align="left">autostart</td><td align="left">automatically start the spammer on node startup</td><td align="left">bool</td></tr>
 </tbody></table>
-<p>Example: </p>
+<p>Example:</p>
 <pre><code class="language-json">  &quot;spammer&quot;: {
     &quot;message&quot;: &quot;Binary is the future.&quot;,
     &quot;index&quot;: &quot;HORNET Spammer&quot;,
@@ -1312,7 +1323,7 @@ You can always get the most up-to-date description of the config parameters by r
 <tr><td align="left">streamReadTimeout</td><td align="left">the read timeout for reads from the gossip stream</td><td align="left">string</td></tr>
 <tr><td align="left">streamWriteTimeout</td><td align="left">the write timeout for writes to the gossip stream</td><td align="left">string</td></tr>
 </tbody></table>
-<p>Example: </p>
+<p>Example:</p>
 <pre><code class="language-json">  &quot;gossip&quot;: {
     &quot;streamReadTimeout&quot;: &quot;1m&quot;,
     &quot;streamWriteTimeout&quot;: &quot;10s&quot;,
@@ -1322,7 +1333,7 @@ You can always get the most up-to-date description of the config parameters by r
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">whiteFlagParentsSolidTimeout</td><td align="left">defines the the maximum duration for the parents to become solid during white flag confirmation API call</td><td align="left">string</td></tr>
 </tbody></table>
-<p>Example: </p>
+<p>Example:</p>
 <pre><code class="language-json">  &quot;debug&quot;: {
     &quot;whiteFlagParentsSolidTimeout&quot;: &quot;2s&quot;,
   }
