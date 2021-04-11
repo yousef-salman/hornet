@@ -173,7 +173,7 @@ You can always get the most up-to-date description of the config parameters by r
 <li><a href="#table-of-content">Table of content</a></li>
 <li><a href="#1-rest-api">1. REST API</a>
 <ul>
-<li><a href="#basic-auth">Basic auth</a></li>
+<li><a href="#jwt-auth">JWT Auth</a></li>
 <li><a href="#limits">Limits</a></li>
 </ul>
 </li>
@@ -356,6 +356,7 @@ You can always get the most up-to-date description of the config parameters by r
 <tr><td align="left">depth</td><td align="left">the depth, respectively the starting point, at which a snapshot of the ledger is generated</td><td align="left">integer</td></tr>
 <tr><td align="left">fullPath</td><td align="left">path to the full snapshot file</td><td align="left">string</td></tr>
 <tr><td align="left">deltaPath</td><td align="left">path to the delta snapshot file</td><td align="left">string</td></tr>
+<tr><td align="left">deltaSizeThresholdPercentage</td><td align="left">create a full snapshot if the size of a delta snapshot reaches a certain percentage of the full snapshot  (0.0 = always create delta snapshot to keep ms diff history)</td><td align="left">float</td></tr>
 <tr><td align="left"><a href="#downloadurls">downloadURLs</a></td><td align="left">URLs to load the snapshot files from.</td><td align="left">array of objects</td></tr>
 </tbody></table>
 <h3 id="downloadurls"><a class="header" href="#downloadurls">DownloadURLs</a></h3>
@@ -369,6 +370,7 @@ You can always get the most up-to-date description of the config parameters by r
     &quot;depth&quot;: 50,
     &quot;fullPath&quot;: &quot;snapshots/mainnet/full_export.bin&quot;,
     &quot;deltaPath&quot;: &quot;snapshots/mainnet/delta_export.bin&quot;,
+    &quot;deltaSizeThresholdPercentage&quot;: 50.0,
     &quot;downloadURLs&quot;: [
       {
         &quot;full&quot;: &quot;https://source1.example.com/full_export.bin&quot;,
