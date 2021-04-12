@@ -398,34 +398,35 @@ You can always get the most up-to-date description of the config parameters by r
 <li><a href="configuration/config.html#tipsel">Tipsel</a></li>
 </ul>
 </li>
-<li><a href="configuration/config.html#10-tipsel">10. Tipsel</a>
+<li><a href="configuration/config.html#10-tangle">10. Tangle</a></li>
+<li><a href="configuration/config.html#11-tipsel">11. Tipsel</a>
 <ul>
 <li><a href="configuration/config.html#nonlazy">NonLazy</a></li>
 <li><a href="configuration/config.html#semilazy">SemiLazy</a></li>
 </ul>
 </li>
-<li><a href="configuration/config.html#11-node">11. Node</a></li>
-<li><a href="configuration/config.html#12-p2p">12. P2P</a>
+<li><a href="configuration/config.html#12-node">12. Node</a></li>
+<li><a href="configuration/config.html#13-p2p">13. P2P</a>
 <ul>
 <li><a href="configuration/config.html#connectionmanager">ConnectionManager</a></li>
 <li><a href="configuration/config.html#peerstore">PeerStore</a></li>
 </ul>
 </li>
-<li><a href="configuration/config.html#13-logger">13. Logger</a></li>
-<li><a href="configuration/config.html#14-warpsync">14. Warpsync</a></li>
-<li><a href="configuration/config.html#15-spammer">15. Spammer</a></li>
-<li><a href="configuration/config.html#16-mqtt">16. MQTT</a></li>
-<li><a href="configuration/config.html#17-profiling">17. Profiling</a></li>
-<li><a href="configuration/config.html#18-prometheus">18. Prometheus</a>
+<li><a href="configuration/config.html#14-logger">14. Logger</a></li>
+<li><a href="configuration/config.html#15-warpsync">15. Warpsync</a></li>
+<li><a href="configuration/config.html#16-spammer">16. Spammer</a></li>
+<li><a href="configuration/config.html#17-mqtt">17. MQTT</a></li>
+<li><a href="configuration/config.html#18-profiling">18. Profiling</a></li>
+<li><a href="configuration/config.html#19-prometheus">19. Prometheus</a>
 <ul>
 <li><a href="configuration/config.html#fileservicediscovery">FileServiceDiscovery</a></li>
 </ul>
 </li>
-<li><a href="configuration/config.html#19-gossip">19. Gossip</a></li>
-<li><a href="configuration/config.html#20-debug">20. Debug</a></li>
-<li><a href="configuration/config.html#21-legacy">21. Legacy</a></li>
-<li><a href="configuration/config.html#211-migrator">21.1 Migrator</a></li>
-<li><a href="configuration/config.html#212-receipts">21.2 Receipts</a>
+<li><a href="configuration/config.html#20-gossip">20. Gossip</a></li>
+<li><a href="configuration/config.html#21-debug">21. Debug</a></li>
+<li><a href="configuration/config.html#22-legacy">22. Legacy</a></li>
+<li><a href="configuration/config.html#221-migrator">22.1 Migrator</a></li>
+<li><a href="configuration/config.html#222-receipts">22.2 Receipts</a>
 <ul>
 <li><a href="configuration/config.html#backup">Backup</a></li>
 <li><a href="configuration/config.html#validator">Validator</a>
@@ -726,7 +727,16 @@ You can always get the most up-to-date description of the config parameters by r
     }
   },
 </code></pre>
-<h2 id="10-tipsel"><a class="header" href="#10-tipsel">10. Tipsel</a></h2>
+<h2 id="10-tangle"><a class="header" href="#10-tangle">10. Tangle</a></h2>
+<table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
+<tr><td align="left">milestoneTimeout</td><td align="left">the interval milestone timeout events are fired if no new milestones are received</td><td align="left">string</td></tr>
+</tbody></table>
+<p>Example:</p>
+<pre><code class="language-json">  &quot;tangle&quot;: {
+    &quot;milestoneTimeout&quot;: &quot;30s&quot;
+  },
+</code></pre>
+<h2 id="11-tipsel"><a class="header" href="#11-tipsel">11. Tipsel</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">maxDeltaMsgYoungestConeRootIndexToCMI</td><td align="left">the maximum allowed delta value for the YCRI of a given message in relation to the current CMI before it gets lazy</td><td align="left">integer</td></tr>
 <tr><td align="left">maxDeltaMsgOldestConeRootIndexToCMI</td><td align="left">the maximum allowed delta value between OCRI of a given message in relation to the current CMI before it gets semi-lazy</td><td align="left">integer</td></tr>
@@ -767,7 +777,7 @@ You can always get the most up-to-date description of the config parameters by r
     }
   },
 </code></pre>
-<h2 id="11-node"><a class="header" href="#11-node">11. Node</a></h2>
+<h2 id="12-node"><a class="header" href="#12-node">12. Node</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">alias</td><td align="left">the alias to identify a node</td><td align="left">string</td></tr>
 <tr><td align="left">profile</td><td align="left">the profile the node runs with</td><td align="left">string</td></tr>
@@ -787,7 +797,7 @@ You can always get the most up-to-date description of the config parameters by r
     ]
   },
 </code></pre>
-<h2 id="12-p2p"><a class="header" href="#12-p2p">12. P2P</a></h2>
+<h2 id="13-p2p"><a class="header" href="#13-p2p">13. P2P</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">bindMultiAddresses</td><td align="left">the bind addresses for this node</td><td align="left">array of strings</td></tr>
 <tr><td align="left"><a href="configuration/config.html#connectionmanager">connectionManager</a></td><td align="left">config for connection manager</td><td align="left">object</td></tr>
@@ -822,7 +832,7 @@ You can always get the most up-to-date description of the config parameters by r
     &quot;reconnectInterval&quot;: &quot;30s&quot;
   },
 </code></pre>
-<h2 id="13-logger"><a class="header" href="#13-logger">13. Logger</a></h2>
+<h2 id="14-logger"><a class="header" href="#14-logger">14. Logger</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">level</td><td align="left">the minimum enabled logging level. Valid values are: &quot;debug&quot;, &quot;info&quot;, &quot;warn&quot;, &quot;error&quot;, &quot;dpanic&quot;, &quot;panic&quot;, &quot;fatal&quot;</td><td align="left">string</td></tr>
 <tr><td align="left">disableCaller</td><td align="left">stops annotating logs with the calling function's file name and line number</td><td align="left">bool</td></tr>
@@ -840,7 +850,7 @@ You can always get the most up-to-date description of the config parameters by r
     ]
   },
 </code></pre>
-<h2 id="14-warpsync"><a class="header" href="#14-warpsync">14. Warpsync</a></h2>
+<h2 id="15-warpsync"><a class="header" href="#15-warpsync">15. Warpsync</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">advancementRange</td><td align="left">the used advancement range per warpsync checkpoint</td><td align="left">integer</td></tr>
 </tbody></table>
@@ -849,7 +859,7 @@ You can always get the most up-to-date description of the config parameters by r
     &quot;advancementRange&quot;: 150,
   }
 </code></pre>
-<h2 id="15-spammer"><a class="header" href="#15-spammer">15. Spammer</a></h2>
+<h2 id="16-spammer"><a class="header" href="#16-spammer">16. Spammer</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">message</td><td align="left">the message to embed within the spam messages</td><td align="left">string</td></tr>
 <tr><td align="left">index</td><td align="left">the indexation of the message</td><td align="left">string</td></tr>
@@ -870,7 +880,7 @@ You can always get the most up-to-date description of the config parameters by r
     &quot;autostart&quot;: false
   },
 </code></pre>
-<h2 id="16-mqtt"><a class="header" href="#16-mqtt">16. MQTT</a></h2>
+<h2 id="17-mqtt"><a class="header" href="#17-mqtt">17. MQTT</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">bindAddress</td><td align="left">bind address on which the MQTT broker listens on</td><td align="left">string</td></tr>
 <tr><td align="left">wsPort</td><td align="left">port of the WebSocket MQTT broker</td><td align="left">integer</td></tr>
@@ -883,7 +893,7 @@ You can always get the most up-to-date description of the config parameters by r
     &quot;workerCount&quot;: 100
   },
 </code></pre>
-<h2 id="17-profiling"><a class="header" href="#17-profiling">17. Profiling</a></h2>
+<h2 id="18-profiling"><a class="header" href="#18-profiling">18. Profiling</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">bindAddress</td><td align="left">the bind address on which the profiler listens on</td><td align="left">string</td></tr>
 </tbody></table>
@@ -892,7 +902,7 @@ You can always get the most up-to-date description of the config parameters by r
     &quot;bindAddress&quot;: &quot;localhost:6060&quot;
   },
 </code></pre>
-<h2 id="18-prometheus"><a class="header" href="#18-prometheus">18. Prometheus</a></h2>
+<h2 id="19-prometheus"><a class="header" href="#19-prometheus">19. Prometheus</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">bindAddress</td><td align="left">the bind address on which the Prometheus exporter listens on</td><td align="left">string</td></tr>
 <tr><td align="left"><a href="configuration/config.html#fileservicediscovery">fileServiceDiscovery</a></td><td align="left">config for file service discovery</td><td align="left">object</td></tr>
@@ -935,7 +945,7 @@ You can always get the most up-to-date description of the config parameters by r
     &quot;promhttpMetrics&quot;: false
   }
 </code></pre>
-<h2 id="19-gossip"><a class="header" href="#19-gossip">19. Gossip</a></h2>
+<h2 id="20-gossip"><a class="header" href="#20-gossip">20. Gossip</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">streamReadTimeout</td><td align="left">the read timeout for reads from the gossip stream</td><td align="left">string</td></tr>
 <tr><td align="left">streamWriteTimeout</td><td align="left">the write timeout for writes to the gossip stream</td><td align="left">string</td></tr>
@@ -946,7 +956,7 @@ You can always get the most up-to-date description of the config parameters by r
     &quot;streamWriteTimeout&quot;: &quot;10s&quot;,
   }
 </code></pre>
-<h2 id="20-debug"><a class="header" href="#20-debug">20. Debug</a></h2>
+<h2 id="21-debug"><a class="header" href="#21-debug">21. Debug</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">whiteFlagParentsSolidTimeout</td><td align="left">defines the the maximum duration for the parents to become solid during white flag confirmation API call</td><td align="left">string</td></tr>
 </tbody></table>
@@ -955,9 +965,9 @@ You can always get the most up-to-date description of the config parameters by r
     &quot;whiteFlagParentsSolidTimeout&quot;: &quot;2s&quot;,
   }
 </code></pre>
-<h2 id="21-legacy"><a class="header" href="#21-legacy">21. Legacy</a></h2>
+<h2 id="22-legacy"><a class="header" href="#22-legacy">22. Legacy</a></h2>
 <p>This is part the config used in the migration from IOTA 1.0 to IOTA 1.5 (Chrysalis)</p>
-<h2 id="211-migrator"><a class="header" href="#211-migrator">21.1 Migrator</a></h2>
+<h2 id="221-migrator"><a class="header" href="#221-migrator">22.1 Migrator</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">queryCooldownPeriod</td><td align="left">the cooldown period of the service to ask for new data</td><td align="left">string</td></tr>
 <tr><td align="left">receiptMaxEntries</td><td align="left">the max amount of entries to embed within a receipt</td><td align="left">integer</td></tr>
@@ -970,7 +980,7 @@ You can always get the most up-to-date description of the config parameters by r
     &quot;stateFilePath&quot;: &quot;migrator.state&quot;,
   }
 </code></pre>
-<h2 id="212-receipts"><a class="header" href="#212-receipts">21.2 Receipts</a></h2>
+<h2 id="222-receipts"><a class="header" href="#222-receipts">22.2 Receipts</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left"><a href="configuration/config.html#backup">backup</a></td><td align="left">config for backup</td><td align="left">object</td></tr>
 <tr><td align="left"><a href="configuration/config.html#validator">validator</a></td><td align="left">config for validator</td><td align="left">object</td></tr>
