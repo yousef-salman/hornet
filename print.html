@@ -265,8 +265,8 @@ The output should be something like this:
 <pre><code class="language-bash">go version go1.16 linux/amd64
 </code></pre>
 </li>
-<li>Install git (if not already done):
-<pre><code class="language-bash">sudo apt install git
+<li>Install the git and build-essential packages (if not already done):
+<pre><code class="language-bash">sudo apt install git build-essential
 </code></pre>
 </li>
 </ul>
@@ -333,7 +333,7 @@ go run &quot;..\main.go&quot; tool snapgen alphanet1 [ADDRESS] 1000000000 &quot;
 <p>In subsequent starts we can use the <em>run_coo</em> script, to skip the bootstrap step.</p>
 <h3 id="start-additional-nodes"><a class="header" href="#start-additional-nodes">Start additional nodes</a></h3>
 <p>To start additional nodes we simply use the additional <em>run</em> scripts provided in the <em>alphanet</em> folder. We can run them on the same device, as they are preconfigured to listen on different ports.</p>
-<p>Congratulations, you are now running a private network! To monitor your coordinator, you can find the dashboard at <a href="http://localhost:8081">http://localhost:8081</a>.</p>
+<p>Congratulations, you are now running a private network! To monitor your coordinator, you can find the dashboard at <a href="http://localhost:8081">http://localhost:8081</a>. Login to the Dashboard with <code>admin</code> as username and password.</p>
 <h3 id="use-a-wallet-to-manage-the-tokens"><a class="header" href="#use-a-wallet-to-manage-the-tokens">Use a wallet to manage the tokens</a></h3>
 <p>To easily access the tokens on the network, we need to take one more step. If you used the default configuration, use the following mnemonic to set up a wallet:</p>
 <pre><code>giant dynamic museum toddler six deny defense ostrich bomb access mercy blood explain muscle shoot shallow glad autumn author calm heavy hawk abuse rally
