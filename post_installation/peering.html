@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>peering.json - HORNET Docs</title>
+        <title>Peering - HORNET Docs</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../tutorials/index.html"><strong aria-hidden="true">2.</strong> Tutorials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tutorials/build.html"><strong aria-hidden="true">2.1.</strong> Build HORNET</a></li><li class="chapter-item expanded "><a href="../tutorials/run.html"><strong aria-hidden="true">2.2.</strong> Run HORNET</a></li><li class="chapter-item expanded "><a href="../tutorials/private_tangle.html"><strong aria-hidden="true">2.3.</strong> Run a private tangle</a></li></ol></li><li class="chapter-item expanded "><a href="../configuration/index.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../configuration/config.html"><strong aria-hidden="true">3.1.</strong> config.json</a></li><li class="chapter-item expanded "><a href="../configuration/peering.html" class="active"><strong aria-hidden="true">3.2.</strong> peering.json</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../getting_started/getting_started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/nodes_101.html"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="../getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="../getting_started/installation_steps.html"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li></ol></li><li class="chapter-item expanded "><a href="../post_installation/post_installation.html"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="../post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../post_installation/peering.html" class="active"><strong aria-hidden="true">3.3.</strong> Peering</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,9 +163,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="peeringjson"><a class="header" href="#peeringjson">peering.json</a></h1>
-<p>The easiest way to add peers in Hornet is via dashboard. Simply go to <code>Peers</code> and click on <code>Add Peer</code>.<br />
-But for the sake of completeness this document describes the structure of the <code>peering.json</code> file.</p>
+                        <h1 id="peering-configuration"><a class="header" href="#peering-configuration">Peering configuration</a></h1>
+<p>The easiest way to add peers in Hornet is via the Dashboard. Simply go to <code>Peers</code> and click on <code>Add Peer</code>.</p>
+<p>But for the sake of completeness this document describes the structure of the <code>peering.json</code> file.</p>
+<p>The default config file is named <code>peering.json</code>. You can change the path or name of the config file by using the <code>-n</code> or <code>--peeringConfig</code> argument while executing <code>hornet</code> executable.</p>
 <p>The <code>peering.json</code> file contains a list of peers. Peers have the following attributes:</p>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">alias</td><td align="left">alias of the peer</td><td align="left">string</td></tr>
@@ -195,7 +196,7 @@ But for the sake of completeness this document describes the structure of the <c
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../configuration/config.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../post_installation/config.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
@@ -213,7 +214,7 @@ But for the sake of completeness this document describes the structure of the <c
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../configuration/config.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../post_installation/config.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 

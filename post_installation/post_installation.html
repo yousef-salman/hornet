@@ -1,0 +1,412 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Post-installation - HORNET Docs</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../getting_started/getting_started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/nodes_101.html"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="../getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="../getting_started/installation_steps.html"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li></ol></li><li class="chapter-item expanded "><a href="../post_installation/post_installation.html" class="active"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="../post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../post_installation/peering.html"><strong aria-hidden="true">3.3.</strong> Peering</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">HORNET Docs</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="post-installation"><a class="header" href="#post-installation">Post-installation</a></h1>
+<p>Once Hornet is deployed, all parameters are set via configuration files.</p>
+<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
+<p>The most important ones are:</p>
+<ul>
+<li><code>config.json</code>: includes all configuration flags and their values</li>
+<li><code>peering.json</code>: includes all connection details to your static peers (neighbors)</li>
+</ul>
+<blockquote>
+<p>Hornet version 0.5.x targets legacy IOTA 1.0 network. Hornet version 0.6.x targets IOTA 1.5 network aka Chrysalis which is the focus of this documentation</p>
+</blockquote>
+<p>Depending on the installation path you selected, default configuration files may be also part of the installation process and so you may see the following configuration files at your deployment directory:</p>
+<pre><code class="language-bash">config.json
+config_chrysalis_testnet.json
+config_comnet.json
+config_devnet.json
+peering.json
+profiles.json
+</code></pre>
+<h3 id="default-configuration"><a class="header" href="#default-configuration">Default configuration</a></h3>
+<p>By default, Hornet searches for configuration files in the working directory and expects default names, such as <code>config.json</code> and <code>peering.json</code>.</p>
+<p>This behavior can be changed by running Hornet with some altering arguments.</p>
+<p>Please see the <a href="./config.html">config.json</a> and <a href="./peering.html">peering.json</a> chapters for more information regarding respective configuration files.</p>
+<p>Once Hornet is executed, it outputs all loaded configuration parameters to <code>stdout</code> to show what configuration was actually loaded.</p>
+<p>All other altering command line parameters can be obtained by running <code>hornet --help</code> or with more granular output <code>hornet --help --full</code>.</p>
+<h2 id="dashboard"><a class="header" href="#dashboard">Dashboard</a></h2>
+<p>There is an admin dashboard/web interface plugin available (port 8081) and it is enabled by default. It provides some useful information regarding the node, its internal activity and its consumed resources, such as allocated memory, peer activity, transactions per second rate, etc.</p>
+<p>This plugin only listens on localhost:8081 per default. If you want to make it accessible from the Internet, you will need to change the default configuration. It can be changed via the following <code>config.json</code> file section:</p>
+<pre><code class="language-json">&quot;dashboard&quot;: {
+    &quot;bindAddress&quot;: &quot;localhost:8081&quot;,
+    &quot;auth&quot;: {
+      &quot;sessionTimeout&quot;: &quot;72h&quot;,
+      &quot;username&quot;: &quot;admin&quot;,
+      &quot;passwordHash&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000&quot;,
+      &quot;passwordSalt&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000&quot;
+    }
+  }
+</code></pre>
+<ul>
+<li>to enable Dashboard to be reachable from the Internet, it can be changed to <code>&quot;bindAddress&quot;: &quot;0.0.0.0:8081&quot;</code></li>
+</ul>
+<p>Even if accessible from the Internet, any visitor still needs a valid combination of username and password to access a management section of the Dashboard.</p>
+<p>It can be generated using integrated command-line Hornet tools, specifically <code>pwdhash</code>:</p>
+<pre><code class="language-bash">hornet tools pwdhash
+</code></pre>
+<p>Output example:</p>
+<pre><code class="language-plaintext">Enter a password:
+Re-enter your password:
+Success!
+Your hash: 24c832e35dc542901b90888321dbfc4b1d9617332cbc124709204e6edf7e49f9
+Your salt: 6c71f4753f6fb52d7a4bb5471281400c8fef760533f0589026a0e646bc03acd4
+</code></pre>
+<ul>
+<li><code>pwdhash</code> tool provides a combination of <code>passwordHash</code> and <code>passwordSalt</code> based on your input password</li>
+<li>both values should be copied to the respective configuration values above, specifically the following keys: <code>passwordHash</code> and <code>passwordSalt</code></li>
+</ul>
+<p>Once Hornet is restarted, then the Dashboard is protected by the given credentials.</p>
+<h2 id="peer-neighbors"><a class="header" href="#peer-neighbors">Peer neighbors</a></h2>
+<p>The IOTA network is a distributed network in which data is broadcasted among IOTA nodes. IOTA nodes broadcast messages to other IOTA nodes using a gossip protocol. To be able to participate in a network communication, each node has to establish a secure connection to some other nodes in the network - to its peer neighbors - and mutually exchange messages. This is the way how the data is spread within the IOTA network.</p>
+<h3 id="node-identity"><a class="header" href="#node-identity">Node identity</a></h3>
+<p>Each node is uniquely identified by a <code>peer identity</code>. <code>Peer identity</code> (also called <code>PeerId</code>) is represented by a public and private key pair. Then <code>PeerId</code> represents a verifiable link between the given peer and its public key, since <code>PeerId</code> is a cryptographic hash of peer's public key. It enables individual peers to establish a secure communication channel as the hash can be used to verify an identity of the peer.</p>
+<p>Hornet, when started for the first time, generates <code>peerId</code> automatically and stores it to <code>./p2pstore</code> directory including generated private key. This <code>peerId</code> then serves as an unique <code>peer identity</code> of the given node.</p>
+<p>This information is also reported in the log:</p>
+<pre><code class="language-plaintext">2021-04-19T14:27:55Z  INFO    P2P     never share your ./p2pstore folder as it contains your node's private key!
+2021-04-19T14:27:55Z  INFO    P2P     generating a new peer identity...
+2021-04-19T14:27:55Z  INFO    P2P     stored public key under p2pstore/key.pub
+2021-04-19T14:27:55Z  INFO    P2P     peer configured, ID: 12D3KooWEWunsQWGvSWYN2VR7wNNoHgae4XikBqwSre8K8sVTefu
+</code></pre>
+<ul>
+<li><code>peerId</code> presented in the output is your node's <code>peerId</code> that is essential component when communicating with your peer neighbor(s)</li>
+<li>as a convention, it is usually refereed to in a form <code>/p2p/12D3KooWEWunsQWGvSWYN2VR7wNNoHgae4XikBqwSre8K8sVTefu</code></li>
+<li>the given <code>peerId</code> is also visible in the Hornet <a href="#dashboard">Dashboard</a></li>
+</ul>
+<p>Alternatively, you can also generate a new peer identity using hornet tools, specifically <code>p2pidentity</code>:</p>
+<pre><code class="language-bash">hornet tools p2pidentity
+</code></pre>
+<p>Sample output:</p>
+<pre><code class="language-plaintext">Your p2p private key:  7ea40ae657e2b8d46069f2ea6fe8f6ab209fb3f6f6630bc025a11a97e17e5d0675a575803660978d323fef05e871f54ecd94602b15181ba56183f9aba121ede7
+Your p2p public key:  75a575803660978d323fef05e871f54ecd94602b15181ba56183f9aba121ede7
+Your p2p PeerID:  12D3KooWHjcCgWPnUEP8wNdbL2fx63Cmosk16xyZ25iUZagxmHb4
+</code></pre>
+<p>The generated private key can then be injected to <code>identityPrivateKey</code> value in <code>config.json</code> file:</p>
+<pre><code class="language-json">&quot;p2p&quot;: {
+    &quot;bindMultiAddresses&quot;: [
+      &quot;/ip4/0.0.0.0/tcp/15600&quot;
+    ],
+    &quot;connectionManager&quot;: {
+      &quot;highWatermark&quot;: 10,
+      &quot;lowWatermark&quot;: 5
+    },
+    &quot;gossipUnknownPeersLimit&quot;: 4,
+    &quot;identityPrivateKey&quot;: &quot;&quot;,
+    &quot;peerStore&quot;: {
+      &quot;path&quot;: &quot;./p2pstore&quot;
+    },
+    &quot;reconnectInterval&quot;: &quot;30s&quot;
+  }
+</code></pre>
+<p>More information regarding <code>peerId</code> is also available at <a href="https://docs.libp2p.io/concepts/peer-id/">libp2p</a>.</p>
+<h3 id="addressing-peer-neighbors"><a class="header" href="#addressing-peer-neighbors">Addressing peer neighbors</a></h3>
+<p>In order to communicate to your peer neighbors, you also need an address to reach them. Hornet uses <code>multiaddress</code> (also known as <code>multiaddr</code>) format to achieve that.</p>
+<p><code>Multiaddr</code> is a convention how to encode multiple layers of addressing information into a single path structure that is future-proof. In other words, <code>multiaddr</code> is able to combine several different pieces of information in a single human-readable and machine-optimized string, including network protocol and <a href="#node-identity">peerId</a>.</p>
+<p>For example, a node is reachable using IPv4 <code>100.1.1.1</code> using <code>TCP</code> on port <code>15600</code> and its <code>peerId</code> is <code>12D3KooWHjcCgWPnUEP8wNdbL2fx63Cmosk16xyZ25iUZagxmHb4</code>.</p>
+<p>Then the <code>multiaddr</code> is composed as:</p>
+<pre><code class="language-plaintext">/ip4/100.1.1.1/tcp/15600/p2p/12D3KooWHjcCgWPnUEP8wNdbL2fx63Cmosk16xyZ25iUZagxmHb4
+</code></pre>
+<p>If a node is reachable using DNS name (node01.iota.org) instead of IP address, then the given <code>multiaddr</code> would be:</p>
+<pre><code class="language-plaintext">/dns/node01.iota.org/tcp/15600/p2p/12D3KooWHjcCgWPnUEP8wNdbL2fx63Cmosk16xyZ25iUZagxmHb4
+</code></pre>
+<p>So node's <code>multiaddr</code> can be composed based on generated unique <code>peerId</code>, and <code>bindMultiAddresses</code> that exists in the <code>config.json</code> file under the <code>p2p</code> section :</p>
+<pre><code class="language-json">&quot;p2p&quot;: {
+    &quot;bindMultiAddresses&quot;: [
+      &quot;/ip4/0.0.0.0/tcp/15600&quot;
+    ],
+  }
+</code></pre>
+<ul>
+<li><code>/ip4/0.0.0.0/tcp/15600</code>: means it listens to your peer neighbors on IPv4 interface on port 15600 and accepts incoming requests from the Internet</li>
+<li>thanks to used <code>peer identity</code>, both parties are able to establish a secure communication channel in which both sides are cryptographically verified and so their mutual identities are confirmed</li>
+</ul>
+<p>More information regarding <code>multiaddr</code> is also available at <a href="https://docs.libp2p.io/concepts/addressing/">libp2p</a>.</p>
+<h3 id="adding-node-peers"><a class="header" href="#adding-node-peers">Adding node peers</a></h3>
+<p>Once your node has an unique <code>multiaddr</code>, then it can be exchanged with other node owners to establish a mutual peer connection.</p>
+<p><em>Where to find your future neighbors?</em></p>
+<p>Go to the official IOTA Discord server and <code>#fullnodes</code> channel and describe your node location (Europe / Germany / Asia, etc.) with your allocated HW resources and ask for some neighbors. Do not publicly disclose your node <code>multiaddr</code> to all readers but wait for an individual direct chat.</p>
+<p>Each peer can then be added using the Hornet <a href="#dashboard">Dashboard</a> (admin section) or <a href="./peering.html">peering.json</a> file.</p>
+<p>A recommended number of peer neighbors is 4-6, since some of them can be offline from time to time.</p>
+<p><em>Happy peering</em></p>
+<h2 id="configuring-http-rest-api"><a class="header" href="#configuring-http-rest-api">Configuring HTTP REST API</a></h2>
+<p>One of the <a href="../getting_started/nodes_101.html">tasks that node is responsible for</a> is exposing HTTP REST API for clients that would like to interacts with the IOTA network, such as crypto wallets, exchanges, IoT devices, etc.</p>
+<p>By default, HTTP REST API is publicly exposed on the port 14265 and ready to accept incoming connections from the Internet.</p>
+<p>Since use of the given interface consumes resources of your node, there are plethora options how to control it.</p>
+<p>REST-API-related options exists under the section <code>restAPI</code> in the <code>config.json</code> file:</p>
+<pre><code class="language-json">&quot;restAPI&quot;: {
+    &quot;jwtAuth&quot;: {
+      &quot;enabled&quot;: false,
+      &quot;salt&quot;: &quot;HORNET&quot;
+    },
+    &quot;excludeHealthCheckFromAuth&quot;: false,
+    &quot;permittedRoutes&quot;: [
+      &quot;/health&quot;,
+      &quot;/mqtt&quot;,
+      &quot;/api/v1/info&quot;,
+      &quot;/api/v1/tips&quot;,
+      &quot;/api/v1/messages/:messageID&quot;,
+      &quot;/api/v1/messages/:messageID/metadata&quot;,
+      &quot;/api/v1/messages/:messageID/raw&quot;,
+      &quot;/api/v1/messages/:messageID/children&quot;,
+      &quot;/api/v1/messages&quot;,
+      &quot;/api/v1/transactions/:transactionID/included-message&quot;,
+      &quot;/api/v1/milestones/:milestoneIndex&quot;,
+      &quot;/api/v1/milestones/:milestoneIndex/utxo-changes&quot;,
+      &quot;/api/v1/outputs/:outputID&quot;,
+      &quot;/api/v1/addresses/:address&quot;,
+      &quot;/api/v1/addresses/:address/outputs&quot;,
+      &quot;/api/v1/addresses/ed25519/:address&quot;,
+      &quot;/api/v1/addresses/ed25519/:address/outputs&quot;,
+      &quot;/api/v1/treasury&quot;
+    ],
+    &quot;whitelistedAddresses&quot;: [
+      &quot;127.0.0.1&quot;,
+      &quot;::1&quot;
+    ],
+    &quot;bindAddress&quot;: &quot;0.0.0.0:14265&quot;,
+    &quot;powEnabled&quot;: true,
+    &quot;powWorkerCount&quot;: 1,
+    &quot;limits&quot;: {
+      &quot;bodyLength&quot;: &quot;1M&quot;,
+      &quot;maxResults&quot;: 1000
+    }
+  }
+</code></pre>
+<p>First, there is a key named <code>bindAddress</code> that can be changed to, for example <code>localhost:14265</code>, meaning the given node accepts incoming connections from localhost only and so effectively turning the node into a private node which is completely valid use case.</p>
+<p>Then, you can granularly control which REST API calls are accepted - key <code>permittedRoutes</code>.</p>
+<p>REST API clients may also request your node to perform so called <code>proof of work</code> that is necessary when sending messages to the network.</p>
+<p>It is a CPU-bound task that takes some time and may have negative impact on your available resources. So, one should consider whether to allow remote PoW to be performed on the node - key <code>powEnabled</code>. If enabled, then you can also control how many parallel workers are dedicated to PoW - key <code>powWorkerCount</code>.</p>
+<p>Needless to say, Hornet supports standard HTTP REST API calls that can be also controlled by a reverse proxy. Please, see some of our additional security recommendations <a href="../getting_started/security_101.html">here</a>.</p>
+<p>Feel free to explore more details regarding different API calls at <a href="https://chrysalis.docs.iota.org/libraries/client.html">IOTA client library documentation</a>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../getting_started/installation_steps.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../post_installation/managing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../getting_started/installation_steps.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../post_installation/managing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

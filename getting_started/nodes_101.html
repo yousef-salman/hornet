@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Tutorials - HORNET Docs</title>
+        <title>Nodes 101 - HORNET Docs</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../tutorials/index.html" class="active"><strong aria-hidden="true">2.</strong> Tutorials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tutorials/build.html"><strong aria-hidden="true">2.1.</strong> Build HORNET</a></li><li class="chapter-item expanded "><a href="../tutorials/run.html"><strong aria-hidden="true">2.2.</strong> Run HORNET</a></li><li class="chapter-item expanded "><a href="../tutorials/private_tangle.html"><strong aria-hidden="true">2.3.</strong> Run a private tangle</a></li></ol></li><li class="chapter-item expanded "><a href="../configuration/index.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../configuration/config.html"><strong aria-hidden="true">3.1.</strong> config.json</a></li><li class="chapter-item expanded "><a href="../configuration/peering.html"><strong aria-hidden="true">3.2.</strong> peering.json</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../getting_started/getting_started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/nodes_101.html" class="active"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="../getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="../getting_started/installation_steps.html"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li></ol></li><li class="chapter-item expanded "><a href="../post_installation/post_installation.html"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="../post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../post_installation/peering.html"><strong aria-hidden="true">3.3.</strong> Peering</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,33 +163,69 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="chrysalis-iota-15"><a class="header" href="#chrysalis-iota-15">Chrysalis (IOTA 1.5)</a></h1>
-<p>Chrysalis is currently in a test stage. The release is planned for Q1 2021.</p>
-<p>You can read more about Chrysalis, please visit the <a href="https://chrysalis.iota.org/">Chrysalis Update Page</a> and the <a href="https://chrysalis.docs.iota.org/">Chrysalis Documentation</a>.</p>
-<p>Here we cover the following steps:</p>
+                        <h1 id="nodes-101"><a class="header" href="#nodes-101">Nodes 101</a></h1>
+<p>The IOTA network is a distributed type of network called Tangle and the network is distributed among plenty of devices called nodes. Nodes are the backbone of an IOTA network. This section covers what nodes do in an IOTA network.</p>
+<p>Nodes are responsible for the following:</p>
 <ul>
-<li><a href="./build.html">Build HORNET</a></li>
-<li><a href="./run.html">Run HORNET</a></li>
-<li><a href="./private_tangle.html">Run a private tangle</a></li>
+<li>Attaching new <a href="https://chrysalis.docs.iota.org/guides/dev_guide.html#messages-payloads-and-transactions">messages/transactions</a> to the Tangle</li>
+<li>Synchronizing with the rest of the network</li>
+<li>Deciding which messages are confirmed</li>
+<li>Keeping a record of the balances on addresses via <a href="https://chrysalis.docs.iota.org/guides/dev_guide.html#unspent-transaction-output-utxo">UTXO</a></li>
+<li>Exposing APIs for clients</li>
 </ul>
-<h2 id="community-tutorials"><a class="header" href="#community-tutorials">Community Tutorials</a></h2>
+<h2 id="attaching-new-messages-to-the-tangle"><a class="header" href="#attaching-new-messages-to-the-tangle">Attaching new messages to the Tangle</a></h2>
+<p>A <code>message</code> is a data structure that is actually being broadcasted in the IOTA network and represents a vertex in the Tangle graph. When nodes receive a new message, they attach it to the Tangle by adding it to their local database.</p>
+<p>As a result, at any point in time, all nodes may have different messages in their local databases. These messages make up a node's view of the Tangle.</p>
+<p>To distribute the messages across the rest of the network, nodes synchronize their local databases with their neighbors.</p>
+<h2 id="synchronizing-with-the-rest-of-the-network"><a class="header" href="#synchronizing-with-the-rest-of-the-network">Synchronizing with the rest of the network</a></h2>
+<p>Like any distributed system, nodes in an IOTA network synchronize their databases with others called neighbors to form a single source of truth.</p>
+<p>When one node, no matter where it is in the world, receives a message, it will try to gossip it to all its neighbors. This way, all nodes eventually see all messages and store them in their local databases.</p>
+<p>To synchronize, nodes in IOTA networks use milestones.</p>
+<p>If the node has the history of messages that a milestone references, that milestone is solid. Therefore, nodes know if they are synchronized if the index of their latest solid milestone is the same as the index of the latest milestone that it has received.</p>
+<p>When a node is synchronized, it then has enough information to decide which transactions it considers confirmed.</p>
+<h2 id="deciding-which-messages-are-confirmed"><a class="header" href="#deciding-which-messages-are-confirmed">Deciding which messages are confirmed</a></h2>
+<p>All messages remain in a pending state until the node is sure of its validity. For a definition of a message, see <a href="https://chrysalis.docs.iota.org/guides/dev_guide.html#messages-payloads-and-transactions">Messages, payloads, and transactions</a>.</p>
+<p>However, even when a message is valid, nodes may not be able to make a decision like in the case of a double spend.</p>
+<p>When nodes detect double spends they must decide which message to consider confirmed and which one to ignore. Nodes do this by using consensus rules that are built into their node software using a network protocol.</p>
+<h2 id="keeping-a-record-of-the-balances-on-addresses-via-utxo"><a class="header" href="#keeping-a-record-of-the-balances-on-addresses-via-utxo">Keeping a record of the balances on addresses via <code>UTXO</code></a></h2>
+<p>All nodes keep a record of the <a href="https://chrysalis.docs.iota.org/guides/dev_guide.html#unspent-transaction-output-utxo">Unspent Transaction Outputs (UTXO)</a> so they can do the following:</p>
 <ul>
-<li><a href="https://github.com/svenger87/hornet-alphanet-tutorial" target="_blank">hornet-testnet-tutorial by svenger87</a></li>
-<li><a href="https://tanglebay.com/article/6-hornet-node-chrysalis/" target="_blank">(EN + DE) Hornet Node (Chrysalis) by Tanglebay.com</a></li>
+<li>Check that a transaction is not transferring more IOTA tokens than are available on the address</li>
+<li>Respond to clients' requests for their balance</li>
+<li>Only when a transaction is confirmed, can nodes update their record of balances</li>
 </ul>
+<h2 id="exposing-apis-for-clients"><a class="header" href="#exposing-apis-for-clients">Exposing APIs for clients</a></h2>
+<p>Nodes come with two set of low-level APIs:</p>
+<ul>
+<li>HTTP(rest) API</li>
+<li>Event API</li>
+</ul>
+<blockquote>
+<p>Developers are not needed to communicate with nodes using mentioned low-level API. Developers can successfully leverage <a href="https://chrysalis.docs.iota.org/libraries/overview.html">iota client libraries</a> that provide a high-level abstraction to all features IOTA nodes provide, either on HTTP API level or Event API level</p>
+</blockquote>
+<h3 id="http-rest-api"><a class="header" href="#http-rest-api">HTTP Rest API</a></h3>
+<p>The HTTP API allows clients to interact with the Tangle and ask nodes to do the following:</p>
+<ul>
+<li>Get tip messages</li>
+<li>Attach new messages to the Tangle</li>
+<li>Do proof of work</li>
+<li>Get messages from the Tangle</li>
+</ul>
+<h3 id="event-api"><a class="header" href="#event-api">Event API</a></h3>
+<p>The Events API allows clients to poll nodes for new messages and other events that happen on nodes. This type of API is useful for building applications such as custodial wallets that need to monitor the Tangle for updates to the balances of certain addresses.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../welcome.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../getting_started/getting_started.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../tutorials/build.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../getting_started/security_101.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -201,13 +237,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../welcome.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../getting_started/getting_started.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../tutorials/build.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../getting_started/security_101.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
