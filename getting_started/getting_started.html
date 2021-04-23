@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../getting_started/getting_started.html" class="active"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/nodes_101.html"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="../getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="../getting_started/installation_steps.html"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li></ol></li><li class="chapter-item expanded "><a href="../post_installation/post_installation.html"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="../post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../post_installation/peering.html"><strong aria-hidden="true">3.3.</strong> Peering</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../getting_started/getting_started.html" class="active"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/nodes_101.html"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="../getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="../getting_started/installation_steps.html"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li><li class="chapter-item expanded "><a href="../getting_started/bootstrap_from_genesis_snapshot.html"><strong aria-hidden="true">2.4.</strong> Bootstrapping from genesis snapshot</a></li></ol></li><li class="chapter-item expanded "><a href="../post_installation/post_installation.html"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="../post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../post_installation/peering.html"><strong aria-hidden="true">3.3.</strong> Peering</a></li><li class="chapter-item expanded "><a href="../post_installation/run_as_verifier.html"><strong aria-hidden="true">3.4.</strong> Run as verifier</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -164,32 +164,43 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="getting-started"><a class="header" href="#getting-started">Getting started</a></h1>
-<p>Running a node is the best way to use IOTA. By doing so, you have direct access to the Tangle instead of having to connect to and trust someone else's node. Additionally, you help the IOTA network to become more distributed and resilient.</p>
-<p>Node software is the backbone of the IOTA network. For an overview of tasks any node is responsible for, please see <a href="./nodes_101.html">Node 101</a>.</p>
-<p>To make sure that your device meets the minimum security requirements for running a node, please see <a href="./security_101.html">Security 101</a>.</p>
+<p>Running a node is the best way to use IOTA. By doing so, you have direct access to the Tangle instead of having to
+connect to and trust someone else's node. Additionally, you help the IOTA network to become more distributed and
+resilient.</p>
+<p>The node software is the backbone of the IOTA network. For an overview of tasks a node is responsible for, please
+see <a href="./nodes_101.html">Node 101</a>.</p>
+<p>To make sure that your device meets the minimum security requirements for running a node, please
+see <a href="./security_101.html">Security 101</a>.</p>
 <blockquote>
-<p>Please note: make sure you install Hornet version 0.6.0+ since it is the minimum version that targets IOTA 1.5 (Chrysalis) network. Versions below 0.6.0 (such as 0.5.x) target the legacy IOTA network which is not the focus of this documentation.</p>
+<p>Please note: make sure you install Hornet version 0.6.0+ since it is the minimum version that targets IOTA 1.5 (Chrysalis) network.
+Versions below 0.6.0 (such as 0.5.x) target the legacy IOTA network which is not the focus of this documentation.</p>
 </blockquote>
 <h2 id="recommended-requirements"><a class="header" href="#recommended-requirements">Recommended requirements</a></h2>
-<p>To handle a potential high rate of messages per second, nodes need enough computational power to run reliably, including the following requirements:</p>
+<p>To handle a potential high rate of messages per second, nodes need enough computational power to run reliably, and
+should have following minimum specs:</p>
 <ul>
 <li>4 cores or 4 vCPU</li>
 <li>8 GB RAM</li>
 <li>SSD storage</li>
 <li>A public IP address</li>
 </ul>
-<p>The amount of storage you need will depend on whether and how often you plan on pruning messages from your local database.</p>
+<p>The amount of storage you need will depend on whether and how often you plan on pruning old data from your local
+database.</p>
 <p>Hornet exposes different functionality on different ports:</p>
 <ul>
-<li>15600 TCP - Gossip port</li>
+<li>15600 TCP - Gossip protocol port</li>
 <li>14265 TCP - REST HTTP API port (optional)</li>
-<li>8081 TCP - Dashboard/WebInterface (optional)</li>
+<li>8081 TCP - Dashboard (optional)</li>
 </ul>
-<p>The mentioned ports are important for flawless node operation. The REST HTTP API port is optional and is only needed if you want to offer access to your node's API. All ports can be customized in <a href="../post_installation/config.html">config.json</a> file.</p>
-<p>Please note: the default dashboard/webinterface only listens on localhost:8081 per default. If you want to make it accessible from the Internet, you will need to change the default configuration.</p>
+<p>The mentioned ports are important for flawless node operation. The REST HTTP API port is optional and is only needed if
+you want to offer access to your node's API. All ports can be customized inside
+the <a href="../post_installation/config.html">config.json</a> file.</p>
+<p>Please note: the default dashboard only listens on localhost:8081 per default. If you want to make it accessible from
+the Internet, you will need to change the default configuration (though we recommend using a reverse proxy).</p>
 <h2 id="operating-system"><a class="header" href="#operating-system">Operating system</a></h2>
-<p>Hornet is written in Go and can be deployed on all major platforms using several different installation methods.</p>
-<p>Hornet ships as a single executable binary (<code>hornet</code> or <code>hornet.exe</code>) and some JSON configuration files; no further dependencies are needed.</p>
+<p>Hornet is written in Go and can be deployed on all major platforms using several installation methods.</p>
+<p>Hornet ships as a single executable binary (<code>hornet</code> or <code>hornet.exe</code>) and some JSON configuration files; no further
+dependencies are needed.</p>
 <h3 id="linux-and-raspberry-pi"><a class="header" href="#linux-and-raspberry-pi">Linux (and Raspberry Pi)</a></h3>
 <p>Available installation methods:</p>
 <ul>
@@ -216,7 +227,8 @@
 <li><code>config.json</code>: includes all core configuration parameters</li>
 <li><code>peering.json</code>: includes connection details to node neighbors (peers)</li>
 </ul>
-<p>See more details regarding the configuration in <a href="../post_installation/post_installation.html">post installation</a> chapter.</p>
+<p>See more details regarding the configuration in the <a href="../post_installation/post_installation.html">post installation</a>
+chapter.</p>
 
                     </main>
 

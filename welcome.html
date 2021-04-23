@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html" class="active"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="getting_started/getting_started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/nodes_101.html"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="getting_started/installation_steps.html"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li></ol></li><li class="chapter-item expanded "><a href="post_installation/post_installation.html"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="post_installation/peering.html"><strong aria-hidden="true">3.3.</strong> Peering</a></li></ol></li><li class="chapter-item expanded "><a href="api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html" class="active"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="getting_started/getting_started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/nodes_101.html"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="getting_started/installation_steps.html"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li><li class="chapter-item expanded "><a href="getting_started/bootstrap_from_genesis_snapshot.html"><strong aria-hidden="true">2.4.</strong> Bootstrapping from genesis snapshot</a></li></ol></li><li class="chapter-item expanded "><a href="post_installation/post_installation.html"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="post_installation/peering.html"><strong aria-hidden="true">3.3.</strong> Peering</a></li><li class="chapter-item expanded "><a href="post_installation/run_as_verifier.html"><strong aria-hidden="true">3.4.</strong> Run as verifier</a></li></ol></li><li class="chapter-item expanded "><a href="api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -165,18 +165,25 @@
                     <main>
                         <h1 id="welcome-to-hornet"><a class="header" href="#welcome-to-hornet">Welcome to HORNET</a></h1>
 <p><img src="./assets/HORNET_logo.svg" alt="" /></p>
-<p>HORNET is a powerful, community driven IOTA node software written in Go. It is easy to install and runs on low-end devices like the Raspberry Pi 4. Hornet is being built and maintained by a group of community developers alongside the IOTA Foundation. Hornet is a full-fledged software providing full node capabilities including full support of Chrysalis network update.</p>
-<p>More information about IOTA network protocol can be found on <a href="https://www.iota.org/">IOTA website</a>. Technical information for developers is part of <a href="https://chrysalis.docs.iota.org/">Chrysalis documentation</a>.</p>
+<p>HORNET is a powerful, community driven IOTA node software written in Go. It is easy to install and runs on low-end
+devices like the Raspberry Pi 4. Hornet is being built and maintained by a group of community developers alongside the
+IOTA Foundation. Hornet is a full-fledged software providing full node capabilities including full support of the
+Chrysalis network update.</p>
+<p>More information about IOTA network protocol can be found on the <a href="https://www.iota.org/">IOTA website</a>. Technical
+information for developers is part of the <a href="https://chrysalis.docs.iota.org/">Chrysalis documentation</a>.</p>
 <blockquote>
-<p>The IOTA network was upgraded to version IOTA 1.5 also know as <a href="https://chrysalis.iota.org">Chrysalis</a>. This documentation is focused on a running node as a part of the Chrysalis network (Hornet version 0.6.0+). It is not valid for previous versions of Hornet, such as 0.5.x and below.</p>
+<p>The IOTA network was upgraded to version IOTA 1.5 also known as <a href="https://chrysalis.iota.org">Chrysalis</a>. This documentation is focused on running a node as a part of the Chrysalis network (Hornet version 0.6.0+).
+It is not valid for previous versions of Hornet, such as 0.5.x and below.</p>
 </blockquote>
 <p>By running your own node you have the following benefits:</p>
 <ul>
 <li>You have direct access to an IOTA network instead of having to connect to and trust someone else's node</li>
-<li>You help the IOTA network to become more distributed and more resilient by validating messages and value transactions in the IOTA network</li>
+<li>You help the IOTA network to become more distributed and more resilient by validating messages and value transactions
+in the IOTA network</li>
 </ul>
 <h2 id="roadmap"><a class="header" href="#roadmap">Roadmap</a></h2>
-<p>Hornet will continue to be updated with the upcoming changes to the IOTA protocol. See the <a href="https://roadmap.iota.org/">roadmap</a> for more information.</p>
+<p>Hornet will continue to be updated with upcoming changes to the IOTA protocol. See
+the <a href="https://roadmap.iota.org/">roadmap</a> for more information.</p>
 <h2 id="source-code"><a class="header" href="#source-code">Source code</a></h2>
 <p>The source code of the project is available on <a href="https://github.com/gohornet/hornet">GitHub</a>.</p>
 

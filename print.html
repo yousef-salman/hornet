@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="getting_started/getting_started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/nodes_101.html"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="getting_started/installation_steps.html"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li></ol></li><li class="chapter-item expanded "><a href="post_installation/post_installation.html"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="post_installation/peering.html"><strong aria-hidden="true">3.3.</strong> Peering</a></li></ol></li><li class="chapter-item expanded "><a href="api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="getting_started/getting_started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/nodes_101.html"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="getting_started/installation_steps.html"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li><li class="chapter-item expanded "><a href="getting_started/bootstrap_from_genesis_snapshot.html"><strong aria-hidden="true">2.4.</strong> Bootstrapping from genesis snapshot</a></li></ol></li><li class="chapter-item expanded "><a href="post_installation/post_installation.html"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="post_installation/peering.html"><strong aria-hidden="true">3.3.</strong> Peering</a></li><li class="chapter-item expanded "><a href="post_installation/run_as_verifier.html"><strong aria-hidden="true">3.4.</strong> Run as verifier</a></li></ol></li><li class="chapter-item expanded "><a href="api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -167,47 +167,65 @@
                     <main>
                         <h1 id="welcome-to-hornet"><a class="header" href="#welcome-to-hornet">Welcome to HORNET</a></h1>
 <p><img src="./assets/HORNET_logo.svg" alt="" /></p>
-<p>HORNET is a powerful, community driven IOTA node software written in Go. It is easy to install and runs on low-end devices like the Raspberry Pi 4. Hornet is being built and maintained by a group of community developers alongside the IOTA Foundation. Hornet is a full-fledged software providing full node capabilities including full support of Chrysalis network update.</p>
-<p>More information about IOTA network protocol can be found on <a href="https://www.iota.org/">IOTA website</a>. Technical information for developers is part of <a href="https://chrysalis.docs.iota.org/">Chrysalis documentation</a>.</p>
+<p>HORNET is a powerful, community driven IOTA node software written in Go. It is easy to install and runs on low-end
+devices like the Raspberry Pi 4. Hornet is being built and maintained by a group of community developers alongside the
+IOTA Foundation. Hornet is a full-fledged software providing full node capabilities including full support of the
+Chrysalis network update.</p>
+<p>More information about IOTA network protocol can be found on the <a href="https://www.iota.org/">IOTA website</a>. Technical
+information for developers is part of the <a href="https://chrysalis.docs.iota.org/">Chrysalis documentation</a>.</p>
 <blockquote>
-<p>The IOTA network was upgraded to version IOTA 1.5 also know as <a href="https://chrysalis.iota.org">Chrysalis</a>. This documentation is focused on a running node as a part of the Chrysalis network (Hornet version 0.6.0+). It is not valid for previous versions of Hornet, such as 0.5.x and below.</p>
+<p>The IOTA network was upgraded to version IOTA 1.5 also known as <a href="https://chrysalis.iota.org">Chrysalis</a>. This documentation is focused on running a node as a part of the Chrysalis network (Hornet version 0.6.0+).
+It is not valid for previous versions of Hornet, such as 0.5.x and below.</p>
 </blockquote>
 <p>By running your own node you have the following benefits:</p>
 <ul>
 <li>You have direct access to an IOTA network instead of having to connect to and trust someone else's node</li>
-<li>You help the IOTA network to become more distributed and more resilient by validating messages and value transactions in the IOTA network</li>
+<li>You help the IOTA network to become more distributed and more resilient by validating messages and value transactions
+in the IOTA network</li>
 </ul>
 <h2 id="roadmap"><a class="header" href="#roadmap">Roadmap</a></h2>
-<p>Hornet will continue to be updated with the upcoming changes to the IOTA protocol. See the <a href="https://roadmap.iota.org/">roadmap</a> for more information.</p>
+<p>Hornet will continue to be updated with upcoming changes to the IOTA protocol. See
+the <a href="https://roadmap.iota.org/">roadmap</a> for more information.</p>
 <h2 id="source-code"><a class="header" href="#source-code">Source code</a></h2>
 <p>The source code of the project is available on <a href="https://github.com/gohornet/hornet">GitHub</a>.</p>
 <h1 id="getting-started"><a class="header" href="#getting-started">Getting started</a></h1>
-<p>Running a node is the best way to use IOTA. By doing so, you have direct access to the Tangle instead of having to connect to and trust someone else's node. Additionally, you help the IOTA network to become more distributed and resilient.</p>
-<p>Node software is the backbone of the IOTA network. For an overview of tasks any node is responsible for, please see <a href="getting_started/./nodes_101.html">Node 101</a>.</p>
-<p>To make sure that your device meets the minimum security requirements for running a node, please see <a href="getting_started/./security_101.html">Security 101</a>.</p>
+<p>Running a node is the best way to use IOTA. By doing so, you have direct access to the Tangle instead of having to
+connect to and trust someone else's node. Additionally, you help the IOTA network to become more distributed and
+resilient.</p>
+<p>The node software is the backbone of the IOTA network. For an overview of tasks a node is responsible for, please
+see <a href="getting_started/./nodes_101.html">Node 101</a>.</p>
+<p>To make sure that your device meets the minimum security requirements for running a node, please
+see <a href="getting_started/./security_101.html">Security 101</a>.</p>
 <blockquote>
-<p>Please note: make sure you install Hornet version 0.6.0+ since it is the minimum version that targets IOTA 1.5 (Chrysalis) network. Versions below 0.6.0 (such as 0.5.x) target the legacy IOTA network which is not the focus of this documentation.</p>
+<p>Please note: make sure you install Hornet version 0.6.0+ since it is the minimum version that targets IOTA 1.5 (Chrysalis) network.
+Versions below 0.6.0 (such as 0.5.x) target the legacy IOTA network which is not the focus of this documentation.</p>
 </blockquote>
 <h2 id="recommended-requirements"><a class="header" href="#recommended-requirements">Recommended requirements</a></h2>
-<p>To handle a potential high rate of messages per second, nodes need enough computational power to run reliably, including the following requirements:</p>
+<p>To handle a potential high rate of messages per second, nodes need enough computational power to run reliably, and
+should have following minimum specs:</p>
 <ul>
 <li>4 cores or 4 vCPU</li>
 <li>8 GB RAM</li>
 <li>SSD storage</li>
 <li>A public IP address</li>
 </ul>
-<p>The amount of storage you need will depend on whether and how often you plan on pruning messages from your local database.</p>
+<p>The amount of storage you need will depend on whether and how often you plan on pruning old data from your local
+database.</p>
 <p>Hornet exposes different functionality on different ports:</p>
 <ul>
-<li>15600 TCP - Gossip port</li>
+<li>15600 TCP - Gossip protocol port</li>
 <li>14265 TCP - REST HTTP API port (optional)</li>
-<li>8081 TCP - Dashboard/WebInterface (optional)</li>
+<li>8081 TCP - Dashboard (optional)</li>
 </ul>
-<p>The mentioned ports are important for flawless node operation. The REST HTTP API port is optional and is only needed if you want to offer access to your node's API. All ports can be customized in <a href="getting_started/../post_installation/config.html">config.json</a> file.</p>
-<p>Please note: the default dashboard/webinterface only listens on localhost:8081 per default. If you want to make it accessible from the Internet, you will need to change the default configuration.</p>
+<p>The mentioned ports are important for flawless node operation. The REST HTTP API port is optional and is only needed if
+you want to offer access to your node's API. All ports can be customized inside
+the <a href="getting_started/../post_installation/config.html">config.json</a> file.</p>
+<p>Please note: the default dashboard only listens on localhost:8081 per default. If you want to make it accessible from
+the Internet, you will need to change the default configuration (though we recommend using a reverse proxy).</p>
 <h2 id="operating-system"><a class="header" href="#operating-system">Operating system</a></h2>
-<p>Hornet is written in Go and can be deployed on all major platforms using several different installation methods.</p>
-<p>Hornet ships as a single executable binary (<code>hornet</code> or <code>hornet.exe</code>) and some JSON configuration files; no further dependencies are needed.</p>
+<p>Hornet is written in Go and can be deployed on all major platforms using several installation methods.</p>
+<p>Hornet ships as a single executable binary (<code>hornet</code> or <code>hornet.exe</code>) and some JSON configuration files; no further
+dependencies are needed.</p>
 <h3 id="linux-and-raspberry-pi"><a class="header" href="#linux-and-raspberry-pi">Linux (and Raspberry Pi)</a></h3>
 <p>Available installation methods:</p>
 <ul>
@@ -234,33 +252,44 @@
 <li><code>config.json</code>: includes all core configuration parameters</li>
 <li><code>peering.json</code>: includes connection details to node neighbors (peers)</li>
 </ul>
-<p>See more details regarding the configuration in <a href="getting_started/../post_installation/post_installation.html">post installation</a> chapter.</p>
+<p>See more details regarding the configuration in the <a href="getting_started/../post_installation/post_installation.html">post installation</a>
+chapter.</p>
 <h1 id="nodes-101"><a class="header" href="#nodes-101">Nodes 101</a></h1>
-<p>The IOTA network is a distributed type of network called Tangle and the network is distributed among plenty of devices called nodes. Nodes are the backbone of an IOTA network. This section covers what nodes do in an IOTA network.</p>
+<p>The IOTA network is a distributed type of network called Tangle, and the network is distributed among plenty of servers
+called nodes. Nodes are the backbone of an IOTA network. This section covers what nodes do in an IOTA network.</p>
 <p>Nodes are responsible for the following:</p>
 <ul>
-<li>Attaching new <a href="https://chrysalis.docs.iota.org/guides/dev_guide.html#messages-payloads-and-transactions">messages/transactions</a> to the Tangle</li>
-<li>Synchronizing with the rest of the network</li>
-<li>Deciding which messages are confirmed</li>
-<li>Keeping a record of the balances on addresses via <a href="https://chrysalis.docs.iota.org/guides/dev_guide.html#unspent-transaction-output-utxo">UTXO</a></li>
-<li>Exposing APIs for clients</li>
+<li>Providing an API to interact with the Tangle/IOTA network.</li>
+<li>Validating <a href="getting_started/(https://chrysalis.docs.iota.org/guides/dev_guide.html#messages-payloads-and-transactions)">messages</a> and ledger mutations for consistency.</li>
+<li>Provide data for other nodes to synchronize to the latest state of the network.</li>
 </ul>
 <h2 id="attaching-new-messages-to-the-tangle"><a class="header" href="#attaching-new-messages-to-the-tangle">Attaching new messages to the Tangle</a></h2>
-<p>A <code>message</code> is a data structure that is actually being broadcasted in the IOTA network and represents a vertex in the Tangle graph. When nodes receive a new message, they attach it to the Tangle by adding it to their local database.</p>
-<p>As a result, at any point in time, all nodes may have different messages in their local databases. These messages make up a node's view of the Tangle.</p>
+<p>A <code>message</code> is a data structure that is actually being broadcasted in the IOTA network and represents a vertex in the
+Tangle graph. When nodes receive a new message, they attach it to the Tangle by adding it to their local database.</p>
+<p>As a result, at any point in time, all nodes may have different messages in their local databases. These messages make
+up a node's view of the Tangle.</p>
 <p>To distribute the messages across the rest of the network, nodes synchronize their local databases with their neighbors.</p>
 <h2 id="synchronizing-with-the-rest-of-the-network"><a class="header" href="#synchronizing-with-the-rest-of-the-network">Synchronizing with the rest of the network</a></h2>
-<p>Like any distributed system, nodes in an IOTA network synchronize their databases with others called neighbors to form a single source of truth.</p>
-<p>When one node, no matter where it is in the world, receives a message, it will try to gossip it to all its neighbors. This way, all nodes eventually see all messages and store them in their local databases.</p>
+<p>Like any distributed system, nodes in an IOTA network synchronize their databases with others called neighbors to form a
+single source of truth.</p>
+<p>When one node, no matter where it is in the world, receives a message, it will try to gossip it to all its neighbors.
+This way, all nodes eventually see all messages and store them in their local databases.</p>
 <p>To synchronize, nodes in IOTA networks use milestones.</p>
-<p>If the node has the history of messages that a milestone references, that milestone is solid. Therefore, nodes know if they are synchronized if the index of their latest solid milestone is the same as the index of the latest milestone that it has received.</p>
+<p>If the node has the history of messages that a milestone references, that milestone is solid. Therefore, nodes know if
+they are synchronized if the index of their latest solid milestone is the same as the index of the latest milestone that
+it has received.</p>
 <p>When a node is synchronized, it then has enough information to decide which transactions it considers confirmed.</p>
 <h2 id="deciding-which-messages-are-confirmed"><a class="header" href="#deciding-which-messages-are-confirmed">Deciding which messages are confirmed</a></h2>
-<p>All messages remain in a pending state until the node is sure of its validity. For a definition of a message, see <a href="https://chrysalis.docs.iota.org/guides/dev_guide.html#messages-payloads-and-transactions">Messages, payloads, and transactions</a>.</p>
+<p>All messages remain in a pending state until the node is sure of its validity. For a definition of a message,
+see <a href="https://chrysalis.docs.iota.org/guides/dev_guide.html#messages-payloads-and-transactions">Messages, payloads, and transactions</a>
+.</p>
 <p>However, even when a message is valid, nodes may not be able to make a decision like in the case of a double spend.</p>
-<p>When nodes detect double spends they must decide which message to consider confirmed and which one to ignore. Nodes do this by using consensus rules that are built into their node software using a network protocol.</p>
+<p>When nodes detect double spends they must decide which message to consider confirmed and which one to ignore. Nodes do
+this by using consensus rules that are built into their node software using a network protocol.</p>
 <h2 id="keeping-a-record-of-the-balances-on-addresses-via-utxo"><a class="header" href="#keeping-a-record-of-the-balances-on-addresses-via-utxo">Keeping a record of the balances on addresses via <code>UTXO</code></a></h2>
-<p>All nodes keep a record of the <a href="https://chrysalis.docs.iota.org/guides/dev_guide.html#unspent-transaction-output-utxo">Unspent Transaction Outputs (UTXO)</a> so they can do the following:</p>
+<p>All nodes keep a record of
+the <a href="https://chrysalis.docs.iota.org/guides/dev_guide.html#unspent-transaction-output-utxo">Unspent Transaction Outputs (UTXO)</a>
+so they can do the following:</p>
 <ul>
 <li>Check that a transaction is not transferring more IOTA tokens than are available on the address</li>
 <li>Respond to clients' requests for their balance</li>
@@ -284,7 +313,9 @@
 <li>Get messages from the Tangle</li>
 </ul>
 <h3 id="event-api"><a class="header" href="#event-api">Event API</a></h3>
-<p>The Events API allows clients to poll nodes for new messages and other events that happen on nodes. This type of API is useful for building applications such as custodial wallets that need to monitor the Tangle for updates to the balances of certain addresses.</p>
+<p>The Events API allows clients to poll nodes for new messages and other events that happen on nodes. This type of API is
+useful for building applications such as custodial wallets that need to monitor the Tangle for updates to the balances
+of certain addresses.</p>
 <h1 id="security-101"><a class="header" href="#security-101">Security 101</a></h1>
 <p>This topic provides a checklist of steps for running a reliable and secure node.</p>
 <blockquote>
@@ -586,6 +617,18 @@ ExecStart=/opt/hornet/hornet
 [Install]
 WantedBy=multi-user.target
 </code></pre>
+<h2 id="bootstrapping-the-chrysalis-phase-2-hornet-node-from-the-genesis-snapshot"><a class="header" href="#bootstrapping-the-chrysalis-phase-2-hornet-node-from-the-genesis-snapshot">Bootstrapping the Chrysalis Phase 2 Hornet node from the genesis snapshot</a></h2>
+<ol>
+<li>Rename the <code>genesis_snapshot.bin</code> to <code>full_snapshot.bin</code>.</li>
+<li>Make sure your C2 (Chrysalis Phase 2) Hornet node has no database and no prior snapshot files.</li>
+<li>Place the <code>full_snapshot.bin</code> in the directory as defined in the <code>snapshots.fullPath</code> config option (this option
+contains the full path including the file name).</li>
+<li>Adjust <code>protocol.networkID</code> to the same value as used in
+the <code>-genesis-snapshot-file-network-id=&quot;&lt;network-id-for-chrysalis-phase-2&gt;&quot;</code> flag. (This should not really be
+necessary as the C2 Hornet version will ship with the appropriate default values).</li>
+<li>Control that the corresponding <code>protocol.publicKeyRanges</code> are correct.</li>
+<li>Start your C2 Hornet node and add peers via the dashboard.</li>
+</ol>
 <h1 id="post-installation"><a class="header" href="#post-installation">Post-installation</a></h1>
 <p>Once Hornet is deployed, all parameters are set via configuration files.</p>
 <h2 id="configuration-1"><a class="header" href="#configuration-1">Configuration</a></h2>
@@ -1591,6 +1634,39 @@ The full snapshot includes the whole ledger state to a specific milestone and a 
   ]
 }
 </code></pre>
+<h2 id="how-to-run-hornet-as-a-verifier-node"><a class="header" href="#how-to-run-hornet-as-a-verifier-node">How to run Hornet as a verifier node</a></h2>
+<blockquote>
+<p>A verifier node is a node which validates receipts. Receipts are an integral component of the
+migration mechanism used to migrate funds from the legacy into the new Chrysalis Phase 2 network.
+See <a href="https://chrysalis.docs.iota.org/guides/migration-in-depth.html">here</a> for a more detailed explanation on how the migration mechanism works.</p>
+</blockquote>
+<p>This guide explains how to configure a Hornet node as a verifier node:</p>
+<ol>
+<li>Make sure the <code>Receipts</code> plugin is enabled under <code>node.enablePlugins</code>.</li>
+<li>Set:
+<ul>
+<li><code>receipts.validator.validate</code> to <code>true</code> (this is what enables the verification logic in your node).</li>
+<li><code>receipts.validator.ignoreSoftErrors</code> to <code>true</code> or <code>false</code>. If <code>true</code>, the verifier node will not panic if it can
+not query a legacy node for data. Set it to <code>false</code> if you want to make sure that your verifier node panics if it
+can not query for data from a legacy node. An invalid receipt will always result in a panic; <code>ignoreSoftErrors</code>
+only controls API call failures to the legacy node.</li>
+<li><code>receipts.validator.api.timeout</code> to something sensible like <code>10s</code> (meaning 10 seconds).</li>
+<li><code>receipts.validator.api.address</code> to the URI of your legacy node. Note that this legacy node <strong>must support/have
+the <code>getWhiteFlagConfirmation</code> and <code>getNodeInfo</code> API commands whitelisted</strong>.</li>
+<li><code>receipts.validator.coordinator.address</code> to the Coordinator address in the legacy network.</li>
+<li><code>receipts.validator.coordinator.merkleTreeDepth</code> to the correct used Merkle tree depth in the legacy network.</li>
+</ul>
+</li>
+<li>Run your Hornet verifier node and let it validate receipts.</li>
+</ol>
+<blockquote>
+<p>Note, it is suggested that you use a loadbalanced endpoint to multiple legacy nodes for <code>receipts.validator.api.address</code>
+in order to obtain high availability.</p>
+</blockquote>
+<p>If now your verifier node panics because of an invalid receipt, it is clear that a receipt was produced which is not
+valid, in which case as a verifier node operator, you are invited to inform the community and the IOTA Foundation of
+your findings. This is by the way the same result as when a milestone is issued by the Coordinator, which diverges from
+a consistent ledger state.</p>
 <h1 id="api-reference"><a class="header" href="#api-reference">API Reference</a></h1>
 <p>This document specifies the REST API for IOTA node software:</p>
 <ul>
