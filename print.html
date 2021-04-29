@@ -388,8 +388,8 @@ sudo apt install hornet
 <p>Prepared Hornet Docker images (amd64/x86_64 architecture) are available at <a href="https://hub.docker.com/r/gohornet/hornet">gohornet/hornet</a> Docker hub.</p>
 <p>Make sure that you've installed Docker on your machine before trying to use the Docker images. (Follow this <a href="https://docs.docker.com/engine/install/">link</a> for install instructions).</p>
 <p><strong>Hornet uses JSON configuration files which can be downloaded from the repository on GitHub:</strong></p>
-<pre><code class="language-bash">curl -LO https://raw.githubusercontent.com/gohornet/hornet/master/config.json
-curl -LO https://raw.githubusercontent.com/gohornet/hornet/master/peering.json
+<pre><code class="language-bash">curl -LO https://raw.githubusercontent.com/gohornet/hornet/main/config.json
+curl -LO https://raw.githubusercontent.com/gohornet/hornet/main/peering.json
 </code></pre>
 <p>See more details on how to configure Hornet under the <a href="getting_started/../post_installation/post_installation.html">post installation</a> chapter.</p>
 <p><strong>Create empty directories for the database, snapshots and set user permission to them:</strong></p>
@@ -413,7 +413,7 @@ mkdir -p snapshots/mainnet &amp;&amp; sudo chown 39999:39999 snapshots -R
 3 directories, 2 files
 </code></pre>
 <p><strong>Start the node;</strong> using <code>docker run</code> command:</p>
-<pre><code class="language-bash">docker run --rm -d --restart always -v $(pwd)/config.json:/app/config.json:ro -v $(pwd)/snapshots/mainnet:/app/snapshots/mainnet -v $(pwd)/mainnetdb:/app/mainnetdb --name hornet --net=host gohornet/hornet:latest
+<pre><code class="language-bash">docker run -d --restart always -v $(pwd)/config.json:/app/config.json:ro -v $(pwd)/snapshots/mainnet:/app/snapshots/mainnet -v $(pwd)/mainnetdb:/app/mainnetdb --name hornet --net=host gohornet/hornet:latest
 </code></pre>
 <ul>
 <li><code>$(pwd)</code>: stands for the current directory</li>
