@@ -168,7 +168,7 @@
 <h2 id="storage"><a class="header" href="#storage">Storage</a></h2>
 <p>Hornet uses embedded database engine that stores its data in a directory on file system. The location is controlled via <code>config.json</code> file under the section <code>db</code>, key <code>path</code>:</p>
 <pre><code class="language-json">&quot;db&quot;: {
-    &quot;engine&quot;: &quot;pebble&quot;,
+    &quot;engine&quot;: &quot;rocksdb&quot;,
     &quot;path&quot;: &quot;mainnetdb&quot;,
     &quot;autoRevalidation&quot;: false
   }
@@ -273,7 +273,7 @@
 <p><strong>Delta snapshot</strong>
 A delta snapshot points to a specific full snapshot, ie. delta snapshot consists of the changes since the last full snapshot.</p>
 <p><strong>Full snapshot</strong>
-The full snapshot includes the whole ledger state to a specific milestone and a solid entry point. </p>
+The full snapshot includes the whole ledger state to a specific milestone and a solid entry point.</p>
 <h3 id="how-to-work-with-snapshots"><a class="header" href="#how-to-work-with-snapshots">How to work with snapshots</a></h3>
 <p>If your run Hornet node for the first time, you need to start it with a full-snapshot. <em>The Hornet downloads it for you automatically from trusted sources.</em></p>
 <p>Additionally, you can start it with an specific delta snapshot.</p>
