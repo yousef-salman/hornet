@@ -505,7 +505,7 @@ services:
 <pre><code class="language-bash">tar -xf HORNET-0.6.0_Linux_x86_64.tar.gz
 </code></pre>
 <ul>
-<li>Once extracted, you get a main executable file, for example <code>hornet</code> for linux, or <code>hornet.exe</code> for Windows</li>
+<li>Once extracted, you get a main executable file</li>
 <li>There are also sample <a href="getting_started/../post_installation/post_installation.html">configuration</a> JSON files available in the archive (tar or zip)</li>
 </ul>
 <p><strong>Run Hornet using <code>--help</code> to get all executable-related arguments:</strong></p>
@@ -550,26 +550,25 @@ WantedBy=multi-user.target
 <hr />
 <h1 id="build-from-source"><a class="header" href="#build-from-source">Build from source</a></h1>
 <p>This method is considered a bit advanced for production use since you usually have to prepare a system environment in order to run the given executable as a service (in a daemon mode) via <code>systemd</code> or <code>supervisord</code>.</p>
-<p><em>Ubuntu/Debian</em></p>
-<p><em>There is usually quite old version of Go language in standard <code>apt</code> repositories available, so it is better to add <code>golang-backports</code> PPA to get the latest version.</em></p>
-<p><strong>Install dependencies: Go, git and build-essentials:</strong></p>
-<pre><code class="language-bash">sudo add-apt-repository ppa:longsleep/golang-backports
-sudo apt update
-sudo apt install golang-go git build-essential
+<p><strong>Install Go:</strong></p>
+<p>Install <a href="https://golang.org/doc/install">Go</a></p>
+<p><strong>Install dependencies: Git and build-essentials:</strong></p>
+<pre><code class="language-bash">sudo apt update
+sudo apt install git build-essential
 </code></pre>
 <p><strong>Check the golang/git version:</strong></p>
 <pre><code class="language-bash">go version
 git --version
 </code></pre>
-<p>You should see Golang version at least <code>1.15.0</code>.</p>
+<p>Make sure you have the latest version from https://golang.org/dl/</p>
 <p><strong>Clone the Hornet source code from GitHub:</strong></p>
 <pre><code class="language-bash">git clone https://github.com/gohornet/hornet.git &amp;&amp; cd hornet
 </code></pre>
 <p><strong>Build the Hornet:</strong></p>
-<pre><code class="language-bash">./scripts/build_hornet.sh
+<pre><code class="language-bash">./build_hornet_rocksdb_builtin.sh
 </code></pre>
 <ul>
-<li>it builds Hornet based on the latest commit from <code>master</code> branch</li>
+<li>it builds Hornet based on the latest commit from <code>main</code> branch</li>
 <li>it takes a couple of minutes</li>
 </ul>
 <p>Once it is compiled, then the executable file named <code>hornet</code> should be available in the current directory:</p>
