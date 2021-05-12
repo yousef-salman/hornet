@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../getting_started/getting_started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/nodes_101.html"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="../getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="../getting_started/installation_steps.html" class="active"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li><li class="chapter-item expanded "><a href="../getting_started/bootstrap_from_genesis_snapshot.html"><strong aria-hidden="true">2.4.</strong> Bootstrapping from genesis snapshot</a></li></ol></li><li class="chapter-item expanded "><a href="../post_installation/post_installation.html"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="../post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../post_installation/peering.html"><strong aria-hidden="true">3.3.</strong> Peering</a></li><li class="chapter-item expanded "><a href="../post_installation/run_as_verifier.html"><strong aria-hidden="true">3.4.</strong> Run as verifier</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../getting_started/getting_started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/nodes_101.html"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="../getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="../getting_started/installation_steps.html" class="active"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li><li class="chapter-item expanded "><a href="../getting_started/using_docker.html"><strong aria-hidden="true">2.4.</strong> Using Docker</a></li><li class="chapter-item expanded "><a href="../getting_started/using_docker_compose.html"><strong aria-hidden="true">2.5.</strong> Using Docker compose</a></li><li class="chapter-item expanded "><a href="../getting_started/bootstrap_from_genesis_snapshot.html"><strong aria-hidden="true">2.6.</strong> Bootstrapping from genesis snapshot</a></li></ol></li><li class="chapter-item expanded "><a href="../post_installation/post_installation.html"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="../post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../post_installation/peering.html"><strong aria-hidden="true">3.3.</strong> Peering</a></li><li class="chapter-item expanded "><a href="../post_installation/run_as_verifier.html"><strong aria-hidden="true">3.4.</strong> Run as verifier</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -204,110 +204,6 @@ sudo apt install hornet
 <p>Please note: Hornet uses an in-memory cache, so it is necessary to provide a grace period while shutting it down (at least 200 seconds) in order to save all data to the underlying persistent storage.</p>
 </blockquote>
 <p>See more details on how to configure Hornet under the <a href="../post_installation/post_installation.html">post installation</a> chapter.</p>
-<hr />
-<h1 id="docker-image"><a class="header" href="#docker-image">Docker image</a></h1>
-<p>Prepared Hornet Docker images (amd64/x86_64 architecture) are available at <a href="https://hub.docker.com/r/gohornet/hornet">gohornet/hornet</a> Docker hub.</p>
-<p>Make sure that you've installed Docker on your machine before trying to use the Docker images. (Follow this <a href="https://docs.docker.com/engine/install/">link</a> for install instructions).</p>
-<p><strong>Hornet uses JSON configuration files which can be downloaded from the repository on GitHub:</strong></p>
-<pre><code class="language-bash">curl -LO https://raw.githubusercontent.com/gohornet/hornet/main/config.json
-curl -LO https://raw.githubusercontent.com/gohornet/hornet/main/peering.json
-</code></pre>
-<p>See more details on how to configure Hornet under the <a href="../post_installation/post_installation.html">post installation</a> chapter.</p>
-<p><strong>Create empty directories for the database, snapshots and set user permission to them:</strong></p>
-<pre><code class="language-bash">mkdir mainnetdb &amp;&amp; sudo chown 39999:39999 mainnetdb
-mkdir -p snapshots/mainnet &amp;&amp; sudo chown 39999:39999 snapshots -R
-</code></pre>
-<ul>
-<li>The Docker image runs under user with uid <code>39999</code>, so it has a full permission to the given directory</li>
-</ul>
-<p><strong>Pull the latest image from <code>gohornet/hornet</code> public Docker hub registry:</strong></p>
-<pre><code class="language-bash">docker pull gohornet/hornet:latest
-</code></pre>
-<p>So basically there should be the following files and directories created in the current directory:</p>
-<pre><code class="language-plaintext">.
-├── config.json
-├── peering.json
-├── mainnetdb       &lt;DIRECTORY&gt;
-└── snapshots       &lt;DIRECTORY&gt;
-    └── mainnet     &lt;DIRECTORY&gt;
-
-3 directories, 2 files
-</code></pre>
-<p><strong>Start the node;</strong> using <code>docker run</code> command:</p>
-<pre><code class="language-bash">docker run -d --restart always -v $(pwd)/config.json:/app/config.json:ro -v $(pwd)/snapshots/mainnet:/app/snapshots/mainnet -v $(pwd)/mainnetdb:/app/mainnetdb --name hornet --net=host gohornet/hornet:latest
-</code></pre>
-<ul>
-<li><code>$(pwd)</code>: stands for the current directory</li>
-<li><code>-d</code>: instructs Docker to run the container instance in a detached mode (daemon).</li>
-<li><code>--restart always</code>: instructs Docker the given container is restarted after Docker reboot</li>
-<li><code>--name hornet</code>: a name of the running container instance. You can refer to the given container by this name</li>
-<li><code>--net=host</code>: instructs Docker to use directly network on host (so the network is not isolated). The best is to run on host network for better performance. It also means it is not necessary to specify any ports. Ports that are opened by container are opened directly on the host</li>
-<li><code>-v $(pwd)/config.json:/app/config.json:ro</code>: it maps the local <code>config.json</code> file into the container in <code>readonly</code> mode</li>
-<li><code>-v $(pwd)/snapshots/mainnet:/app/snapshots/mainnet</code>: it maps the local <code>snapshots</code> directory into the container</li>
-<li><code>-v $(pwd)/mainnetdb:/app/mainnetdb</code>: it maps the local <code>mainnetdb</code> directory into the container</li>
-<li>all mentioned directories are mapped to the given container and so the Hornet in container persists the data directly to those directories</li>
-</ul>
-<h3 id="managing-node"><a class="header" href="#managing-node">Managing node</a></h3>
-<p><strong>Displaying log output:</strong></p>
-<pre><code class="language-bash">docker logs -f hornet
-</code></pre>
-<ul>
-<li><code>-f</code>: instructs Docker to continue displaying the log to stdout until CTRL+C is pressed</li>
-</ul>
-<p><strong>Restarting Hornet:</strong></p>
-<pre><code class="language-bash">docker restart -t 200 hornet
-</code></pre>
-<p><strong>Stopping Hornet:</strong></p>
-<pre><code class="language-bash">docker stop -t 200 hornet
-</code></pre>
-<ul>
-<li><code>-t 200</code>: instructs Docker to wait for a grace period before shutting down</li>
-</ul>
-<blockquote>
-<p>Please note: Hornet uses an in-memory cache and so it is necessary to provide a grace period while shutting it down (at least 200 seconds) in order to save all data to the underlying persistent storage.</p>
-</blockquote>
-<p><strong>Removing container:</strong></p>
-<pre><code class="language-bash">docker container rm hornet
-</code></pre>
-<h3 id="using-docker-compose"><a class="header" href="#using-docker-compose">Using docker-compose</a></h3>
-<p>Docker-compose is a tool on top of the Docker engine that enables you (among other features) to define Docker parameters in a structured way via <code>yaml</code> file. Then, with a single <code>docker-compose</code> command, you create and start containers based on your configuration.</p>
-<p>Create <code>docker-compose.yml</code> file among the other files created above:</p>
-<pre><code class="language-plaintext">.
-├── config.json
-├── peering.json
-├── docker-compose.yml      &lt;NEWLY ADDED FILE&gt;
-├── mainnetdb
-└── snapshots
-    └── mainnet
-</code></pre>
-<pre><code class="language-plaintext">version: '3'
-services:
-  hornet:
-    container_name: hornet
-    image: gohornet/hornet:latest
-    network_mode: host
-    restart: always
-    cap_drop:
-      - ALL
-    volumes:
-      - ./config.json:/app/config.json:ro
-      - ./peering.json:/app/peering.json
-      - ./snapshots/mainnet:/app/snapshots/mainnet
-      - ./mainnetdb:/app/mainnetdb
-</code></pre>
-<p>Then run <code>docker-compose up</code> in the current directory:</p>
-<pre><code class="language-bash">docker-compose up
-</code></pre>
-<ul>
-<li>it reads parameters from the given <code>docker-compose.yml</code> and fires up the container named <code>hornet</code> based on them</li>
-<li><code>docker-compose up</code> automatically runs containers in detached mode (as daemon)</li>
-</ul>
-<p>Restarting and managing containers that were created by <code>docker-compose</code> can be done in the same fashion as mentioned above (<code>docker log</code>, <code>docker restart</code>, etc.).</p>
-<p>See more details on how to configure Hornet under the <a href="../post_installation/post_installation.html">post installation</a> chapter.</p>
-<h3 id="building-hornet-docker-image"><a class="header" href="#building-hornet-docker-image">Building Hornet Docker image</a></h3>
-<p>All files required to start and build Hornet container are also part of the Hornet repo, so you can alternatively clone the repo and starts from there.</p>
-<p>This approach is, for example, used in <code>hornet-testnet-boilerplate</code> by our friend Dave Fijter. Please see it <a href="https://github.com/fijter/hornet-testnet-boilerplate">here</a>.</p>
-<p>This boilerplate also builds a new container image from the source, so it can be used as an alternative to <a href="#build-from-source">Build from source</a> approach.</p>
 <hr />
 <h1 id="pre-built-binaries"><a class="header" href="#pre-built-binaries">Pre-built binaries</a></h1>
 <p>There are several pre-built binaries of Hornet for major platforms available including some default configuration JSON files.</p>
@@ -449,7 +345,7 @@ WantedBy=multi-user.target
                         
 
                         
-                            <a rel="next" href="../getting_started/bootstrap_from_genesis_snapshot.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../getting_started/using_docker.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -467,7 +363,7 @@ WantedBy=multi-user.target
                 
 
                 
-                    <a rel="next" href="../getting_started/bootstrap_from_genesis_snapshot.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../getting_started/using_docker.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

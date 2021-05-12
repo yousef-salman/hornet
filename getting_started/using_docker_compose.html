@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Run as verifier - HORNET Docs</title>
+        <title>Using Docker compose - HORNET Docs</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../getting_started/getting_started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/nodes_101.html"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="../getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="../getting_started/installation_steps.html"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li><li class="chapter-item expanded "><a href="../getting_started/using_docker.html"><strong aria-hidden="true">2.4.</strong> Using Docker</a></li><li class="chapter-item expanded "><a href="../getting_started/using_docker_compose.html"><strong aria-hidden="true">2.5.</strong> Using Docker compose</a></li><li class="chapter-item expanded "><a href="../getting_started/bootstrap_from_genesis_snapshot.html"><strong aria-hidden="true">2.6.</strong> Bootstrapping from genesis snapshot</a></li></ol></li><li class="chapter-item expanded "><a href="../post_installation/post_installation.html"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="../post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../post_installation/peering.html"><strong aria-hidden="true">3.3.</strong> Peering</a></li><li class="chapter-item expanded "><a href="../post_installation/run_as_verifier.html" class="active"><strong aria-hidden="true">3.4.</strong> Run as verifier</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../getting_started/getting_started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/nodes_101.html"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="../getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="../getting_started/installation_steps.html"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li><li class="chapter-item expanded "><a href="../getting_started/using_docker.html"><strong aria-hidden="true">2.4.</strong> Using Docker</a></li><li class="chapter-item expanded "><a href="../getting_started/using_docker_compose.html" class="active"><strong aria-hidden="true">2.5.</strong> Using Docker compose</a></li><li class="chapter-item expanded "><a href="../getting_started/bootstrap_from_genesis_snapshot.html"><strong aria-hidden="true">2.6.</strong> Bootstrapping from genesis snapshot</a></li></ol></li><li class="chapter-item expanded "><a href="../post_installation/post_installation.html"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="../post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../post_installation/peering.html"><strong aria-hidden="true">3.3.</strong> Peering</a></li><li class="chapter-item expanded "><a href="../post_installation/run_as_verifier.html"><strong aria-hidden="true">3.4.</strong> Run as verifier</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -165,52 +165,62 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="how-to-run-hornet-as-a-verifier-node"><a class="header" href="#how-to-run-hornet-as-a-verifier-node">How to run Hornet as a verifier node</a></h2>
-<blockquote>
-<p>A verifier node is a node which validates receipts. Receipts are an integral component of the
-migration mechanism used to migrate funds from the legacy into the new Chrysalis Phase 2 network.
-See <a href="https://chrysalis.docs.iota.org/guides/migration-in-depth.html">here</a> for a more detailed explanation on how the migration mechanism works.</p>
-</blockquote>
-<p>This guide explains how to configure a Hornet node as a verifier node:</p>
-<ol>
-<li>Make sure the <code>Receipts</code> plugin is enabled under <code>node.enablePlugins</code>.</li>
-<li>Set:
-<ul>
-<li><code>receipts.validator.validate</code> to <code>true</code> (this is what enables the verification logic in your node).</li>
-<li><code>receipts.validator.ignoreSoftErrors</code> to <code>true</code> or <code>false</code>. If <code>true</code>, the verifier node will not panic if it can
-not query a legacy node for data. Set it to <code>false</code> if you want to make sure that your verifier node panics if it
-can not query for data from a legacy node. An invalid receipt will always result in a panic; <code>ignoreSoftErrors</code>
-only controls API call failures to the legacy node.</li>
-<li><code>receipts.validator.api.timeout</code> to something sensible like <code>10s</code> (meaning 10 seconds).</li>
-<li><code>receipts.validator.api.address</code> to the URI of your legacy node. Note that this legacy node <strong>must support/have
-the <code>getWhiteFlagConfirmation</code> and <code>getNodeInfo</code> API commands whitelisted</strong>.</li>
-<li><code>receipts.validator.coordinator.address</code> to the Coordinator address in the legacy network.</li>
-<li><code>receipts.validator.coordinator.merkleTreeDepth</code> to the correct used Merkle tree depth in the legacy network.</li>
-</ul>
-</li>
-<li>Run your Hornet verifier node and let it validate receipts.</li>
-</ol>
-<blockquote>
-<p>Note, it is suggested that you use a loadbalanced endpoint to multiple legacy nodes for <code>receipts.validator.api.address</code>
-in order to obtain high availability.</p>
-</blockquote>
-<p>If now your verifier node panics because of an invalid receipt, it is clear that a receipt was produced which is not
-valid, in which case as a verifier node operator, you are invited to inform the community and the IOTA Foundation of
-your findings. This is by the way the same result as when a milestone is issued by the Coordinator, which diverges from
-a consistent ledger state.</p>
+                        <h1 id="using-docker-compose"><a class="header" href="#using-docker-compose">Using Docker Compose</a></h1>
+<p>Make sure that you have read <a href="using_docker.html">Using Docker</a> before continue reading. This chapter is for more advanced users. The following link provides more information about <a href="https://docs.docker.com/compose/">Docker Compose</a>.</p>
+<h2 id="using-your-own-docker-compose-file-for-running-hornet"><a class="header" href="#using-your-own-docker-compose-file-for-running-hornet">Using your own Docker Compose file for running Hornet</a></h2>
+<p>Docker Compose is a tool on top of the Docker engine that enables you to define Docker parameters in a structured way via <code>docker-compose.yaml</code> file. You can create and start the container with a single <code>docker-compose</code> command based on your configuration.</p>
+<p>Create <code>docker-compose.yml</code> file among the other files created above:</p>
+<pre><code class="language-plaintext">.
+├── config.json
+├── peering.json
+├── profiles.json
+├── docker-compose.yml      &lt;NEWLY ADDED FILE&gt;
+├── mainnetdb
+└── snapshots
+    └── mainnet
+</code></pre>
+<pre><code class="language-plaintext">version: '3'
+services:
+  hornet:
+    container_name: hornet
+    image: gohornet/hornet:latest
+    network_mode: host
+    restart: always
+    cap_drop:
+      - ALL
+    volumes:
+      - ./config.json:/app/config.json:ro
+      - ./peering.json:/app/peering.json
+      - ./profiles.json:/app/profiles.json
+      - ./snapshots/mainnet:/app/snapshots/mainnet
+      - ./mainnetdb:/app/mainnetdb
+</code></pre>
+<p>Run the following command in the current directory to create and start an new Hornet container in detached mode (as daemon).</p>
+<p><code>docker-compose up -d</code></p>
+<p>See more details on how to configure Hornet under the <a href="../post_installation/post_installation.html">post installation</a> chapter.</p>
+<h2 id="build-your-own-image-using-docker-compose"><a class="header" href="#build-your-own-image-using-docker-compose">Build your own image using Docker Compose</a></h2>
+<p>Note: Follow this step only if you want to run Hornet via Docker Compose.</p>
+<p>If you are using an architecture other than amd64/x86_64 edit the <code>docker-compose.yml</code> file and set the correct architecture where noted.</p>
+<p>The following command will build the image and run Hornet:</p>
+<pre><code class="language-sh">docker-compose up
+</code></pre>
+<p>CTRL-c to stop.</p>
+<p>Add <code>-d</code> to run detached, and to stop:</p>
+<pre><code class="language-sh">docker-compose down -t 200
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../post_installation/peering.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../getting_started/using_docker.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../api-reference.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../getting_started/bootstrap_from_genesis_snapshot.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -222,13 +232,13 @@ a consistent ledger state.</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../post_installation/peering.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../getting_started/using_docker.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../api-reference.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../getting_started/bootstrap_from_genesis_snapshot.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
