@@ -10,33 +10,33 @@ env:
 # Builds
 builds:
   # Linux AMD64
-  - id: hornet-linux-amd64
-    binary: hornet
-    flags:
-      - -tags=builtin_static,rocksdb
-    ldflags:
-      - -s -w -X github.com/gohornet/hornet/core/cli.AppVersion={{.Version}}
-    main: main.go
-    goos:
-      - linux
-    goarch:
-      - amd64
+  #- id: hornet-linux-amd64
+  #  binary: hornet
+  #  flags:
+  #    - -tags=builtin_static,rocksdb
+  #  ldflags:
+  #    - -s -w -X github.com/gohornet/hornet/core/cli.AppVersion={{.Version}}
+  #  main: main.go
+  #  goos:
+  #    - linux
+  #  goarch:
+  #    - amd64
   # Linux ARM64
-  - id: hornet-linux-arm64
-    binary: hornet
-    flags:
-      - -tags=builtin_static,rocksdb
-    env:
-      - CGO_ENABLED=1
-      - CC=aarch64-linux-gnu-gcc
-      - CXX=aarch64-linux-gnu-g++
-    ldflags:
-      - -s -w -X github.com/gohornet/hornet/core/cli.AppVersion={{.Version}}
-    main: main.go
-    goos:
-      - linux
-    goarch:
-      - arm64
+  #- id: hornet-linux-arm64
+  #  binary: hornet
+  #  flags:
+  #    - -tags=builtin_static,rocksdb
+  #  env:
+  #    - CGO_ENABLED=1
+  #    - CC=aarch64-linux-gnu-gcc
+  #    - CXX=aarch64-linux-gnu-g++
+  #  ldflags:
+  #    - -s -w -X github.com/gohornet/hornet/core/cli.AppVersion={{.Version}}
+  #  main: main.go
+  #  goos:
+  #    - linux
+  #  goarch:
+  #    - arm64
   # Windows AMD64
   - id: hornet-windows-amd64
     binary: hornet
@@ -44,10 +44,10 @@ builds:
       - -tags=builtin_static,rocksdb
     env:
       - CGO_ENABLED=1
-      - CC=x86_64-w64-mingw32-gcc
-      - CXX=x86_64-w64-mingw32-g++
-    ldflags:
-      - -s -w -X github.com/gohornet/hornet/core/cli.AppVersion={{.Version}}
+      - CC=/usr/bin/x86_64-w64-mingw32-gcc-posix
+      - CXX=/usr/bin/x86_64-w64-mingw32-g++-posix
+    #ldflags:
+    #  - -L${SRCDIR}/dist/windows_amd64/lib -L${SRCDIR}/dist/windows_amd64/lib64 -lrocksdb -pthread -static -static-libgcc -static-libstdc++ -lgcc -lstdc++ -lm
     main: main.go
     goos:
       - windows
