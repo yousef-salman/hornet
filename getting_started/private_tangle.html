@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Using Docker compose - HORNET Docs</title>
+        <title>Private Tangle - HORNET Docs</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../getting_started/getting_started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/nodes_101.html"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="../getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="../getting_started/installation_steps.html"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li><li class="chapter-item expanded "><a href="../getting_started/using_docker.html"><strong aria-hidden="true">2.4.</strong> Using Docker</a></li><li class="chapter-item expanded "><a href="../getting_started/using_docker_compose.html" class="active"><strong aria-hidden="true">2.5.</strong> Using Docker compose</a></li><li class="chapter-item expanded "><a href="../getting_started/bootstrap_from_genesis_snapshot.html"><strong aria-hidden="true">2.6.</strong> Bootstrapping from genesis snapshot</a></li><li class="chapter-item expanded "><a href="../getting_started/private_tangle.html"><strong aria-hidden="true">2.7.</strong> Private Tangle</a></li></ol></li><li class="chapter-item expanded "><a href="../post_installation/post_installation.html"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="../post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../post_installation/peering.html"><strong aria-hidden="true">3.3.</strong> Peering</a></li><li class="chapter-item expanded "><a href="../post_installation/run_as_verifier.html"><strong aria-hidden="true">3.4.</strong> Run as verifier</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../getting_started/getting_started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/nodes_101.html"><strong aria-hidden="true">2.1.</strong> Nodes 101</a></li><li class="chapter-item expanded "><a href="../getting_started/security_101.html"><strong aria-hidden="true">2.2.</strong> Security 101</a></li><li class="chapter-item expanded "><a href="../getting_started/installation_steps.html"><strong aria-hidden="true">2.3.</strong> Installation steps</a></li><li class="chapter-item expanded "><a href="../getting_started/using_docker.html"><strong aria-hidden="true">2.4.</strong> Using Docker</a></li><li class="chapter-item expanded "><a href="../getting_started/using_docker_compose.html"><strong aria-hidden="true">2.5.</strong> Using Docker compose</a></li><li class="chapter-item expanded "><a href="../getting_started/bootstrap_from_genesis_snapshot.html"><strong aria-hidden="true">2.6.</strong> Bootstrapping from genesis snapshot</a></li><li class="chapter-item expanded "><a href="../getting_started/private_tangle.html" class="active"><strong aria-hidden="true">2.7.</strong> Private Tangle</a></li></ol></li><li class="chapter-item expanded "><a href="../post_installation/post_installation.html"><strong aria-hidden="true">3.</strong> Post-installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../post_installation/managing.html"><strong aria-hidden="true">3.1.</strong> Managing node</a></li><li class="chapter-item expanded "><a href="../post_installation/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../post_installation/peering.html"><strong aria-hidden="true">3.3.</strong> Peering</a></li><li class="chapter-item expanded "><a href="../post_installation/run_as_verifier.html"><strong aria-hidden="true">3.4.</strong> Run as verifier</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">4.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">6.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">7.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">8.</strong> Code of Conduct</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -165,62 +165,51 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="using-docker-compose"><a class="header" href="#using-docker-compose">Using Docker Compose</a></h1>
-<p>Make sure that you have read <a href="using_docker.html">Using Docker</a> before continue reading. This chapter is for more advanced users. The following link provides more information about <a href="https://docs.docker.com/compose/">Docker Compose</a>.</p>
-<h2 id="using-your-own-docker-compose-file-for-running-hornet"><a class="header" href="#using-your-own-docker-compose-file-for-running-hornet">Using your own Docker Compose file for running Hornet</a></h2>
-<p>Docker Compose is a tool on top of the Docker engine that enables you to define Docker parameters in a structured way via <code>docker-compose.yaml</code> file. You can create and start the container with a single <code>docker-compose</code> command based on your configuration.</p>
-<p>Create <code>docker-compose.yml</code> file among the other files created above:</p>
-<pre><code class="language-plaintext">.
-├── config.json
-├── peering.json
-├── profiles.json
-├── docker-compose.yml      &lt;NEWLY ADDED FILE&gt;
-├── mainnetdb
-└── snapshots
-    └── mainnet
+                        <p>This is a small tutorial on how to run your own private <a href="https://chrysalis.iota.org/">Chrysalis</a> tangle.</p>
+<p>We will need to set up <a href="https://legacy.docs.iota.org/docs/getting-started/1.1/the-tangle/the-coordinator">a coordinator</a> and at least one additional <a href="./getting_started.html">node</a> and distribute some tokens to an address that we can manage using a wallet. We will do this by running some scripts from the <em>private_tangle</em> folder that you will find in the HORNET respository.</p>
+<h3 id="preparations"><a class="header" href="#preparations">Preparations</a></h3>
+<ul>
+<li><a href="./installation_steps.html">Build HORNET</a></li>
+<li>Get a wallet built for Chrysalis (for example <a href="https://github.com/iotaledger/cli-wallet">the cli-wallet</a>)</li>
+</ul>
+<h3 id="configuration"><a class="header" href="#configuration">Configuration</a></h3>
+<p>The scripts in the <em>private_tangle</em> folder of the HORNET repository, which we will use to run the coordinator and the nodes, are preconfigured. By default they will distribute the tokens to the following address:</p>
+<pre><code>atoi1qpszqzadsym6wpppd6z037dvlejmjuke7s24hm95s9fg9vpua7vluehe53e
 </code></pre>
-<pre><code class="language-plaintext">version: '3'
-services:
-  hornet:
-    container_name: hornet
-    image: gohornet/hornet:latest
-    network_mode: host
-    restart: always
-    cap_drop:
-      - ALL
-    volumes:
-      - ./config.json:/app/config.json:ro
-      - ./peering.json:/app/peering.json
-      - ./profiles.json:/app/profiles.json
-      - ./snapshots/mainnet:/app/snapshots/mainnet
-      - ./mainnetdb:/app/mainnetdb
+<p>If you want to use an existing address, search for your address in <a href="https://explorer.iota.org/mainnet">the explorer</a> and look for the corresponding ED25519 address. Find the <em>create_snapshot_private_tangle</em> script in the <em>private_tangle</em> directory and change the following line to use your ED25519 address:</p>
+<pre><code class="language-bash">...
+go run &quot;..\main.go&quot; tool snapgen private_tangle1 [ADDRESS] 1000000000 &quot;snapshots\private_tangle1\full_snapshot.bin&quot;
+...
 </code></pre>
-<p>Run the following command in the current directory to create and start an new Hornet container in detached mode (as daemon).</p>
-<p><code>docker-compose up -d</code></p>
-<p>See more details on how to configure Hornet under the <a href="../post_installation/post_installation.html">post installation</a> chapter.</p>
-<h2 id="build-your-own-image-using-docker-compose"><a class="header" href="#build-your-own-image-using-docker-compose">Build your own image using Docker Compose</a></h2>
-<p>Note: Follow this step only if you want to run Hornet via Docker Compose.</p>
-<p>If you are using an architecture other than amd64/x86_64 edit the <code>docker-compose.yml</code> file and set the correct architecture where noted.</p>
-<p>The following command will build the image and run Hornet:</p>
-<pre><code class="language-sh">docker-compose up
+<h3 id="start-the-coordinator"><a class="header" href="#start-the-coordinator">Start the coordinator</a></h3>
+<p>In the HORNET repository, change to the <em>private_tangle</em> directory and run the <em>run_coo_bootstrap</em> script. This will create all files needed to run the network and distribute the tokens to the address we configured. It will also start the coordinator.</p>
+<p>In subsequent starts we can use the <em>run_coo</em> script, to skip the bootstrap step.</p>
+<h3 id="start-additional-nodes"><a class="header" href="#start-additional-nodes">Start additional nodes</a></h3>
+<p>To start additional nodes we simply use the additional <em>run</em> scripts provided in the <em>private_tangle</em> folder. We can run them on the same device, as they are preconfigured to listen on different ports.</p>
+<p>Congratulations, you are now running a private network! To monitor your coordinator, you can find the dashboard at <a href="http://localhost:8081">http://localhost:8081</a>. Login to the Dashboard with <code>admin</code> as username and password.</p>
+<h3 id="use-a-wallet-to-manage-the-tokens"><a class="header" href="#use-a-wallet-to-manage-the-tokens">Use a wallet to manage the tokens</a></h3>
+<p>To easily access the tokens on the network, we need to take one more step. If you used the default configuration, use the following mnemonic to set up a wallet:</p>
+<pre><code>giant dynamic museum toddler six deny defense ostrich bomb access mercy blood explain muscle shoot shallow glad autumn author calm heavy hawk abuse rally
 </code></pre>
-<p>CTRL-c to stop.</p>
-<p>Add <code>-d</code> to run detached, and to stop:</p>
-<pre><code class="language-sh">docker-compose down -t 200
+<p>Now connect your wallet to one of the nodes that are running and you should be able to find the tokens distributed to your wallet.</p>
+<p>Using <a href="https://github.com/iotaledger/cli-wallet">the cli-wallet</a>, the commands would be:</p>
+<pre><code class="language-bash">&gt; wallet mnemonic &quot;giant dynamic museum toddler six deny defense ostrich bomb access mercy blood explain muscle shoot shallow glad autumn author calm heavy hawk abuse rally&quot;
+&gt; wallet new --node &quot;http://localhost:14266&quot; --alias EXAMPLE
 </code></pre>
+<p>You are now all set to start using your own private tangle!</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../getting_started/using_docker.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../getting_started/bootstrap_from_genesis_snapshot.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../getting_started/bootstrap_from_genesis_snapshot.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../post_installation/post_installation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -232,13 +221,13 @@ services:
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../getting_started/using_docker.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../getting_started/bootstrap_from_genesis_snapshot.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../getting_started/bootstrap_from_genesis_snapshot.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../post_installation/post_installation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
