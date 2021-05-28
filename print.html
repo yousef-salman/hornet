@@ -1018,16 +1018,25 @@ at the <a href="https://chrysalis.docs.iota.org/libraries/client.html">IOTA clie
     ]
   },
   &quot;pruning&quot;: {
-    &quot;enabled&quot;: true,
-    &quot;delay&quot;: 60480,
+    &quot;milestones&quot;: {
+      &quot;enabled&quot;: false,
+      &quot;maxMilestonesToKeep&quot;: 60480
+    },
+    &quot;size&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;targetSize&quot;: &quot;30GB&quot;,
+      &quot;thresholdPercentage&quot;: 10.0,
+      &quot;cooldownTime&quot;: &quot;5m&quot;
+    },
     &quot;pruneReceipts&quot;: false
-  }
+  },
 </code></pre>
 <h3 id="snapshot-pruning"><a class="header" href="#snapshot-pruning">Snapshot pruning</a></h3>
 <p>During a snapshot, messages may be deleted from the ledger if they were confirmed by an old milestone. In other words, the term <code>pruning</code> means the deletion of the old history from the node database:</p>
 <ul>
-<li>To enable pruning, set the <code>pruning.enabled</code> key to enabled</li>
-<li>The <code>pruning.delay</code> defines how far back from the current confirmed milestone should be pruned</li>
+<li>To enable pruning, set the <code>pruning.milestones.enabled</code> or <code>pruning.size.enabled</code> key to enabled</li>
+<li>The <code>pruning.milestones.maxMilestonesToKeep</code> defines how far back from the current confirmed milestone should be pruned</li>
+<li>The <code>pruning.size.targetSize</code> defines the maximum database size, old data will be pruned.</li>
 </ul>
 <p>There are two types of snapshots:</p>
 <p><strong>Delta snapshot</strong>
@@ -1070,7 +1079,12 @@ The full snapshot includes the whole ledger state to a specific milestone and a 
 <li><a href="post_installation/config.html#downloadurls">DownloadURLs</a></li>
 </ul>
 </li>
-<li><a href="post_installation/config.html#5-pruning">5. Pruning</a></li>
+<li><a href="post_installation/config.html#5-pruning">5. Pruning</a>
+<ul>
+<li><a href="post_installation/config.html#milestones">Milestones</a></li>
+<li><a href="post_installation/config.html#size">Size</a></li>
+</ul>
+</li>
 <li><a href="post_installation/config.html#6-protocol">6. Protocol</a>
 <ul>
 <li><a href="post_installation/config.html#publickeyranges">PublicKeyRanges</a></li>
@@ -1268,14 +1282,34 @@ The full snapshot includes the whole ledger state to a specific milestone and a 
 </code></pre>
 <h2 id="5-pruning"><a class="header" href="#5-pruning">5. Pruning</a></h2>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
-<tr><td align="left">enabled</td><td align="left">whether to delete old message data from the database</td><td align="left">bool</td></tr>
-<tr><td align="left">delay</td><td align="left">amount of milestone cones to keep in the database</td><td align="left">integer</td></tr>
+<tr><td align="left"><a href="post_installation/config.html#Milestones">milestones</a></td><td align="left">milestones based pruning</td><td align="left">object</td></tr>
+<tr><td align="left"><a href="post_installation/config.html#Size">size</a></td><td align="left">database size based pruning</td><td align="left">object</td></tr>
 <tr><td align="left">pruneReceipts</td><td align="left">whether to delete old receipts data from the database</td><td align="left">bool</td></tr>
+</tbody></table>
+<h3 id="milestones"><a class="header" href="#milestones">Milestones</a></h3>
+<table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
+<tr><td align="left">enabled</td><td align="left">whether to delete old message data from the database based on maximum milestones to keep</td><td align="left">bool</td></tr>
+<tr><td align="left">maxMilestonesToKeep</td><td align="left">maximum amount of milestone cones to keep in the database</td><td align="left">integer</td></tr>
+</tbody></table>
+<h3 id="size"><a class="header" href="#size">Size</a></h3>
+<table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
+<tr><td align="left">enabled</td><td align="left">whether to delete old message data from the database based on maximum database size</td><td align="left">bool</td></tr>
+<tr><td align="left">targetSize</td><td align="left">target size of the database</td><td align="left">string</td></tr>
+<tr><td align="left">thresholdPercentage</td><td align="left">the percentage the database size gets reduced if the target size is reached</td><td align="left">float</td></tr>
+<tr><td align="left">cooldownTime</td><td align="left">cooldown time between two pruning by database size events</td><td align="left">string</td></tr>
 </tbody></table>
 <p>Example:</p>
 <pre><code class="language-json">  &quot;pruning&quot;: {
-    &quot;enabled&quot;: true,
-    &quot;delay&quot;: 60480,
+    &quot;milestones&quot;: {
+      &quot;enabled&quot;: false,
+      &quot;maxMilestonesToKeep&quot;: 60480
+    },
+    &quot;size&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;targetSize&quot;: &quot;30GB&quot;,
+      &quot;thresholdPercentage&quot;: 10.0,
+      &quot;cooldownTime&quot;: &quot;5m&quot;
+    },
     &quot;pruneReceipts&quot;: false
   },
 </code></pre>
@@ -1355,12 +1389,12 @@ The full snapshot includes the whole ledger state to a specific milestone and a 
 <h3 id="quorum"><a class="header" href="#quorum">Quorum</a></h3>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
 <tr><td align="left">enabled</td><td align="left">whether the coordinator quorum is enabled</td><td align="left">bool</td></tr>
-<tr><td align="left"><a href="post_installation/config.html#groups">groups</a></td><td align="left">the quorum groups used to ask other nodes for correct ledger state of the coordinator</td><td align="left">Array of object arrays</td></tr>
+<tr><td align="left"><a href="post_installation/config.html#groups">groups</a></td><td align="left">the quorum groups used to ask other nodes for correct ledger state of the coordinator</td><td align="left">array of object arrays</td></tr>
 <tr><td align="left">timeout</td><td align="left">the timeout until a node in the quorum must have answered</td><td align="left">string</td></tr>
 </tbody></table>
 <h4 id="groups"><a class="header" href="#groups">Groups</a></h4>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
-<tr><td align="left"><a href="post_installation/config.html#group_name">{GROUP_NAME}</a></td><td align="left">the qourum group used to ask other nodes for correct ledger state of the coordinator</td><td align="left">Array of objects</td></tr>
+<tr><td align="left"><a href="post_installation/config.html#group_name">{GROUP_NAME}</a></td><td align="left">the qourum group used to ask other nodes for correct ledger state of the coordinator</td><td align="left">array of objects</td></tr>
 </tbody></table>
 <h5 id="group_name"><a class="header" href="#group_name">{GROUP_NAME}</a></h5>
 <table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>

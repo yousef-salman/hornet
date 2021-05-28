@@ -260,16 +260,25 @@
     ]
   },
   &quot;pruning&quot;: {
-    &quot;enabled&quot;: true,
-    &quot;delay&quot;: 60480,
+    &quot;milestones&quot;: {
+      &quot;enabled&quot;: false,
+      &quot;maxMilestonesToKeep&quot;: 60480
+    },
+    &quot;size&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;targetSize&quot;: &quot;30GB&quot;,
+      &quot;thresholdPercentage&quot;: 10.0,
+      &quot;cooldownTime&quot;: &quot;5m&quot;
+    },
     &quot;pruneReceipts&quot;: false
-  }
+  },
 </code></pre>
 <h3 id="snapshot-pruning"><a class="header" href="#snapshot-pruning">Snapshot pruning</a></h3>
 <p>During a snapshot, messages may be deleted from the ledger if they were confirmed by an old milestone. In other words, the term <code>pruning</code> means the deletion of the old history from the node database:</p>
 <ul>
-<li>To enable pruning, set the <code>pruning.enabled</code> key to enabled</li>
-<li>The <code>pruning.delay</code> defines how far back from the current confirmed milestone should be pruned</li>
+<li>To enable pruning, set the <code>pruning.milestones.enabled</code> or <code>pruning.size.enabled</code> key to enabled</li>
+<li>The <code>pruning.milestones.maxMilestonesToKeep</code> defines how far back from the current confirmed milestone should be pruned</li>
+<li>The <code>pruning.size.targetSize</code> defines the maximum database size, old data will be pruned.</li>
 </ul>
 <p>There are two types of snapshots:</p>
 <p><strong>Delta snapshot</strong>
