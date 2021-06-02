@@ -790,81 +790,6 @@ Your salt: 6c71f4753f6fb52d7a4bb5471281400c8fef760533f0589026a0e646bc03acd4
 <p>Copy both values to their corresponding configuration options: <code>dashboard.auth.passwordHash</code> and
 <code>dashboard.auth.passwordSalt</code> respectively.</p>
 <p>In order for the new pasword to take effect, you must restart Hornet.</p>
-<h2 id="peer-neighbors"><a class="header" href="#peer-neighbors">Peer neighbors</a></h2>
-<p>The IOTA network is a distributed network in which data is broadcasted among IOTA nodes through a gossip protocol. To be
-able to participate in a network, each node has to establish a secure connection to other nodes in the network - to its
-peer neighbors - and mutually exchange messages.</p>
-<h3 id="node-identity"><a class="header" href="#node-identity">Node identity</a></h3>
-<p>Each node is uniquely identified by a <code>peer identity</code>. <code>Peer identity</code> (also called <code>PeerId</code>) is represented by a public
-and private key pair. The <code>PeerId</code> represents a verifiable link between the given peer and its public key,
-since <code>PeerId</code> is a cryptographic hash of peer's public key. It enables individual peers to establish a secure
-communication channel as the hash can be used to verify an identity of the peer.</p>
-<p>Hornet automatically generates a <code>PeerId</code> when it is started for the first time, and saves the identity's public key in
-a file <code>./p2pstore/key.pub</code> and the private key within a BadgerDB within <code>./p2pstore</code>. The generated identity is kept
-between subsequent restarts.</p>
-<p>Each time Hornet starts, the <code>PeerId</code> is written to stdout:</p>
-<pre><code class="language-plaintext">2021-04-19T14:27:55Z  INFO    P2P     never share your ./p2pstore folder as it contains your node's private key!
-2021-04-19T14:27:55Z  INFO    P2P     generating a new peer identity...
-2021-04-19T14:27:55Z  INFO    P2P     stored public key under p2pstore/key.pub
-2021-04-19T14:27:55Z  INFO    P2P     peer configured, ID: 12D3KooWEWunsQWGvSWYN2VR7wNNoHgae4XikBqwSre8K8sVTefu
-</code></pre>
-<p>Your <code>PeerId</code> is an essential part of your <code>multiaddr</code> used to configure neighbors, such
-as <code>/dns/example.com/tcp/15600/p2p/12D3KooWHiPg9gzmy1cbTFAUekyLHQKQKvsKmhzB7NJ5xnhK4WKq</code>,
-where <code>12D3KooWHiPg9gzmy1cbTFAUekyLHQKQKvsKmhzB7NJ5xnhK4WKq</code>
-corresponds to your <code>PeerId</code>. Your <code>PeerId</code> is also visible on the start page of the dashboard.</p>
-<p>It is recommended however to pre-generate the identity, so you can pre-communicate it to your peers before you even
-start your node and also to retain the identity in case you delete your <code>./p2pstore</code> by accident.</p>
-<p>You can use the <code>p2pidentity</code> CLI tool to generate a <code>PeerId</code> which simply generates a key pair and logs it to stdout:</p>
-<pre><code class="language-bash">./hornet tools p2pidentity
-</code></pre>
-<p>Sample output:</p>
-<pre><code class="language-plaintext">Your p2p private key:  7ea40ae657e2b8d46069f2ea6fe8f6ab209fb3f6f6630bc025a11a97e17e5d0675a575803660978d323fef05e871f54ecd94602b15181ba56183f9aba121ede7
-Your p2p public key:  75a575803660978d323fef05e871f54ecd94602b15181ba56183f9aba121ede7
-Your p2p PeerID:  12D3KooWHjcCgWPnUEP8wNdbL2fx63Cmosk16xyZ25iUZagxmHb4
-</code></pre>
-<p>Now simply copy the value of <code>Your p2p private key</code> to the <code>p2p.identityPrivateKey</code> configuration option.</p>
-<p>Your Hornet node will now use the specified private key in <code>p2p.identityPrivateKey</code> to generate the <code>PeerId</code> (which will
-ultimately be stored in <code>./p2pstore</code>).</p>
-<blockquote>
-<p>In case there already is a <code>./p2pstore</code> with another identity, Hornet will panic and tell you that you have a previous identity which does not match with what is defined via <code>p2p.identityPrivateKey</code> (
-in that case either delete the <code>./p2pstore</code> or reset the <code>p2p.identityPrivateKey</code>).</p>
-</blockquote>
-<p>More information regarding the <code>PeerId</code> is available on the <a href="https://docs.libp2p.io/concepts/peer-id/">libp2p docs page</a>
-.</p>
-<h3 id="addressing-peer-neighbors"><a class="header" href="#addressing-peer-neighbors">Addressing peer neighbors</a></h3>
-<p>In order to communicate to your peer neighbors, you also need an address to reach them. Hornet uses
-the <code>MultiAddresses</code> format (also known as <code>multiaddr</code>) to achieve that.</p>
-<p><code>multiAddr</code> is a convention how to encode multiple layers of addressing information into a single path structure that is
-future-proof. In other words, <code>multiaddr</code> is able to combine several different pieces of information in a single
-human-readable and machine-optimized string, including network protocol and <a href="post_installation/post_installation.html#node-identity"><code>PeerId</code></a>.</p>
-<p>For example, a node is reachable using IPv4 <code>100.1.1.1</code> using <code>TCP</code> on port <code>15600</code> and its <code>PeerId</code>
-is <code>12D3KooWHjcCgWPnUEP8wNdbL2fx63Cmosk16xyZ25iUZagxmHb4</code>.</p>
-<p>A <code>multiaddr</code> encoding such information would look like this:</p>
-<pre><code class="language-plaintext">/ip4/100.1.1.1/tcp/15600/p2p/12D3KooWHjcCgWPnUEP8wNdbL2fx63Cmosk16xyZ25iUZagxmHb4
-</code></pre>
-<blockquote>
-<p>Note how <code>ip4</code> is used. A common mistake is to use <code>ipv4</code>.</p>
-</blockquote>
-<p>If a node is reachable using a DNS name (for example <code>node01.iota.org</code>), then the given <code>multiaddr</code> would be:</p>
-<pre><code class="language-plaintext">/dns/node01.iota.org/tcp/15600/p2p/12D3KooWHjcCgWPnUEP8wNdbL2fx63Cmosk16xyZ25iUZagxmHb4
-</code></pre>
-<p>In order to find out your own <code>multiaddr</code> to give to your peers for neighboring, combine the <code>peerId</code> you have gotten
-from the stdout when the Hornet node started up (or which was shown via the <code>p2pidentity</code> CLI tool) and your
-configured <code>p2p.bindAddress</code>. Obviously replace the <code>/ip4/&lt;ip_address&gt;</code>/<code>/dns/&lt;hostname&gt;</code> segments with the actual
-information.</p>
-<p>More information about <code>multiaddr</code> is available at the <a href="https://docs.libp2p.io/concepts/addressing/">libp2p docs page</a>.</p>
-<h3 id="adding-node-peers"><a class="header" href="#adding-node-peers">Adding node peers</a></h3>
-<p>Once you know your node's own <code>multiaddr</code>, it can be exchanged with other node owners to establish a mutual peer
-connection.</p>
-<p><em>Where to find neighbors?</em></p>
-<p>Join the official IOTA Discord server and join the <code>#fullnodes</code> channel and describe your node location (Europe /
-Germany / Asia, etc.) with your allocated HW resources and ask for neighbors. Do not publicly disclose your
-node <code>multiaddr</code>
-to all readers but wait for an individual direct chat.</p>
-<p>Each peer can then be added using the Hornet <a href="post_installation/post_installation.html#dashboard">dashboard</a> (admin section) or <a href="post_installation/./peering.html">peering.json</a>
-file.</p>
-<p>A recommended number of peer neighbors is 4-6 to get some degree of redundancy.</p>
-<p><em>Happy peering</em></p>
 <h2 id="configuring-http-rest-api"><a class="header" href="#configuring-http-rest-api">Configuring HTTP REST API</a></h2>
 <p>One of the <a href="post_installation/../getting_started/nodes_101.html">tasks that the node is responsible for</a> is exposing a HTTP REST API for
 clients that would like to interacts with the IOTA network, such as crypto wallets, exchanges, IoT devices, etc.</p>
@@ -1758,15 +1683,82 @@ The full snapshot includes the whole ledger state to a specific milestone and a 
   }
 </code></pre>
 <div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="peering-configuration"><a class="header" href="#peering-configuration">Peering configuration</a></h1>
-<p>The easiest way to add peers in Hornet is via the Dashboard. Simply go to <code>Peers</code> and click on <code>Add Peer</code>.</p>
-<p>But for the sake of completeness this document describes the structure of the <code>peering.json</code> file.</p>
-<p>The default config file is named <code>peering.json</code>. You can change the path or name of the config file by using the <code>-n</code> or <code>--peeringConfig</code> argument while executing <code>hornet</code> executable.</p>
-<p>The <code>peering.json</code> file contains a list of peers. Peers have the following attributes:</p>
-<table><thead><tr><th align="left">Name</th><th align="left">Description</th><th align="left">Type</th></tr></thead><tbody>
-<tr><td align="left">alias</td><td align="left">alias of the peer</td><td align="left">string</td></tr>
-<tr><td align="left">multiAddress</td><td align="left">multiAddress of the peer</td><td align="left">string</td></tr>
-</tbody></table>
-<p>Example:</p>
+<p>The IOTA network is a distributed network in which data is broadcasted among IOTA nodes through a gossip protocol. To be
+able to participate in a network, each node has to establish a secure connection to other nodes in the network - to its
+peer neighbors - and mutually exchange messages.</p>
+<h3 id="node-identity"><a class="header" href="#node-identity">Node identity</a></h3>
+<p>Each node is uniquely identified by a <code>peer identity</code>. <code>Peer identity</code> (also called <code>PeerId</code>) is represented by a public
+and private key pair. The <code>PeerId</code> represents a verifiable link between the given peer and its public key,
+since <code>PeerId</code> is a cryptographic hash of peer's public key. It enables individual peers to establish a secure
+communication channel as the hash can be used to verify an identity of the peer.</p>
+<p>Hornet automatically generates a <code>PeerId</code> when it is started for the first time, and saves the identity's public key in
+a file <code>./p2pstore/key.pub</code> and the private key within a BadgerDB within <code>./p2pstore</code>. The generated identity is kept
+between subsequent restarts.</p>
+<p>Each time Hornet starts, the <code>PeerId</code> is written to stdout:</p>
+<pre><code class="language-plaintext">2021-04-19T14:27:55Z  INFO    P2P     never share your ./p2pstore folder as it contains your node's private key!
+2021-04-19T14:27:55Z  INFO    P2P     generating a new peer identity...
+2021-04-19T14:27:55Z  INFO    P2P     stored public key under p2pstore/key.pub
+2021-04-19T14:27:55Z  INFO    P2P     peer configured, ID: 12D3KooWEWunsQWGvSWYN2VR7wNNoHgae4XikBqwSre8K8sVTefu
+</code></pre>
+<p>Your <code>PeerId</code> is an essential part of your <code>multiaddr</code> used to configure neighbors, such
+as <code>/dns/example.com/tcp/15600/p2p/12D3KooWHiPg9gzmy1cbTFAUekyLHQKQKvsKmhzB7NJ5xnhK4WKq</code>,
+where <code>12D3KooWHiPg9gzmy1cbTFAUekyLHQKQKvsKmhzB7NJ5xnhK4WKq</code>
+corresponds to your <code>PeerId</code>. Your <code>PeerId</code> is also visible on the start page of the dashboard.</p>
+<p>It is recommended however to pre-generate the identity, so you can pre-communicate it to your peers before you even
+start your node and also to retain the identity in case you delete your <code>./p2pstore</code> by accident.</p>
+<p>You can use the <code>p2pidentity</code> CLI tool to generate a <code>PeerId</code> which simply generates a key pair and logs it to stdout:</p>
+<pre><code class="language-bash">./hornet tools p2pidentity
+</code></pre>
+<p>Sample output:</p>
+<pre><code class="language-plaintext">Your p2p private key (hex):  64166cc2627c369283cb1dd8412b6259232653611a3ae5cfb52398c23cfaead76af7a3cb775895046b9f28f2cf2b4150a9fd5dfd0ecf5c8d94529818578f40a2
+Your p2p public key (hex):  6af7a3cb775895046b9f28f2cf2b4150a9fd5dfd0ecf5c8d94529818578f40a2
+Your p2p public key (base58):  8CZELJwB3aBzxJgnLMvvt1FirAwNN6jif9LavYTNHCty
+Your p2p PeerID:  12D3KooWH1vQ5SWtEUTVNCCCxxgGeoLZLVz1PnpCcjhcJXcGB9cu
+</code></pre>
+<p>Now simply copy the value of <code>Your p2p private key</code> to the <code>p2p.identityPrivateKey</code> configuration option.</p>
+<p>Your Hornet node will now use the specified private key in <code>p2p.identityPrivateKey</code> to generate the <code>PeerId</code> (which will
+ultimately be stored in <code>./p2pstore</code>).</p>
+<blockquote>
+<p>In case there already is a <code>./p2pstore</code> with another identity, Hornet will panic and tell you that you have a previous identity which does not match with what is defined via <code>p2p.identityPrivateKey</code> (
+in that case either delete the <code>./p2pstore</code> or reset the <code>p2p.identityPrivateKey</code>).</p>
+</blockquote>
+<p>More information regarding the <code>PeerId</code> is available on the <a href="https://docs.libp2p.io/concepts/peer-id/">libp2p docs page</a>
+.</p>
+<h3 id="addressing-peer-neighbors"><a class="header" href="#addressing-peer-neighbors">Addressing peer neighbors</a></h3>
+<p>In order to communicate to your peer neighbors, you also need an address to reach them. Hornet uses the <code>MultiAddresses</code>
+format (also known as <code>multiaddr</code>) to achieve that.</p>
+<p><code>multiAddr</code> is a convention how to encode multiple layers of addressing information into a single path structure that is
+future-proof. In other words, <code>multiaddr</code> is able to combine several different pieces of information in a single
+human-readable and machine-optimized string, including network protocol and <a href="post_installation/peering.html#node-identity"><code>PeerId</code></a>.</p>
+<p>For example, a node is reachable using IPv4 <code>100.1.1.1</code> using <code>TCP</code> on port <code>15600</code> and its <code>PeerId</code>
+is <code>12D3KooWHjcCgWPnUEP8wNdbL2fx63Cmosk16xyZ25iUZagxmHb4</code>.</p>
+<p>A <code>multiaddr</code> encoding such information would look like this:</p>
+<pre><code class="language-plaintext">/ip4/100.1.1.1/tcp/15600/p2p/12D3KooWHjcCgWPnUEP8wNdbL2fx63Cmosk16xyZ25iUZagxmHb4
+</code></pre>
+<blockquote>
+<p>Note how <code>ip4</code> is used. A common mistake is to use <code>ipv4</code>.</p>
+</blockquote>
+<p>If a node is reachable using a DNS name (for example <code>node01.iota.org</code>), then the given <code>multiaddr</code> would be:</p>
+<pre><code class="language-plaintext">/dns/node01.iota.org/tcp/15600/p2p/12D3KooWHjcCgWPnUEP8wNdbL2fx63Cmosk16xyZ25iUZagxmHb4
+</code></pre>
+<p>In order to find out your own <code>multiaddr</code> to give to your peers for neighboring, combine the <code>peerId</code> you have gotten
+from the stdout when the Hornet node started up (or which was shown via the <code>p2pidentity</code> CLI tool) and your
+configured <code>p2p.bindAddress</code>. Obviously replace the <code>/ip4/&lt;ip_address&gt;</code>/<code>/dns/&lt;hostname&gt;</code> segments with the actual
+information.</p>
+<p>More information about <code>multiaddr</code> is available at the <a href="https://docs.libp2p.io/concepts/addressing/">libp2p docs page</a>.</p>
+<h3 id="adding-node-peers"><a class="header" href="#adding-node-peers">Adding node peers</a></h3>
+<p>Once you know your node's own <code>multiaddr</code>, it can be exchanged with other node owners to establish a mutual peer
+connection. A recommended number of peer neighbors is 4-6 to get some degree of redundancy.</p>
+<h4 id="finding-neighbors"><a class="header" href="#finding-neighbors">Finding neighbors</a></h4>
+<p>Join the official IOTA Discord server and join the <code>#nodesharing</code> channel and describe your node location (Europe /
+Germany / Asia, etc.) with your allocated HW resources and ask for neighbors. Do not publicly disclose your
+node <code>multiaddr</code>
+to all readers but wait for an individual direct chat.</p>
+<p>Peers can be added using the Hornet <a href="post_installation/peering.html#dashboard">dashboard</a> (simply go to <code>Peers</code> and click on <code>Add Peer</code>)
+or the <a href="post_installation/./peering.html">peering.json</a> file.</p>
+<p>You can change the path or name of the <code>peering.json</code> file by using the <code>-n</code> or <code>--peeringConfig</code> argument while
+executing the <code>hornet</code> executable.</p>
+<p>Example <code>peering.json</code>:</p>
 <pre><code class="language-json">{
   &quot;peers&quot;: [
     {
@@ -1784,6 +1776,27 @@ The full snapshot includes the whole ledger state to a specific milestone and a 
   ]
 }
 </code></pre>
+<h3 id="autopeering"><a class="header" href="#autopeering">Autopeering</a></h3>
+<p>Hornet also supports automatically finding peers through the autopeering module. We recommend to only use autopeering
+if you have at least 4 static peers to minimize service distribution in case your autopeered peers are flaky.</p>
+<p>Autopeering is enabled per default and your node will use the specified entry nodes under
+<code>p2p.autopeering.entryNodes</code> to find new peers. <code>entryNodes</code> are also encoded as <code>multiaddr</code>, example:</p>
+<pre><code>/ip4/45.12.34.43/udp/14626/autopeering/8CZELJwB3aBzxJgnLMvvt1FirAwNN6jif9LavYTNHCty
+</code></pre>
+<p>where the <code>/autopeering</code> portion defines the base58 encoded Ed25519 public key.</p>
+<p>Per default, Hornet will peer up to 4 autopeered peers and initiate a gossip protocol with them.
+Autopeered peers are not subject to connection trimming, the same way as mutually tethered peers aren't either.</p>
+<h4 id="entry-node"><a class="header" href="#entry-node">Entry Node</a></h4>
+<p>If you want to run your own node as an autopeering entry node, configure <code>p2p.autopeering.runAsEntryNode</code> respectively.
+The base58 encoded public key is in the output of the <code>p2pidentity</code> Hornet tool; alternatively, if you
+already have an identity in a <code>./p2pstore</code>, use the <code>p2pidentityextract</code> to extract it.</p>
+<h3 id="lowhigh-watermark"><a class="header" href="#lowhigh-watermark">Low/High Watermark</a></h3>
+<p>The <code>p2p.connectionManager.highWatermark</code> and <code>p2p.connectionManager.lowWatermark</code> config options define
+&quot;watermark&quot; points which can be thought of as a filling basin where if the <code>highWatermark</code> is reached, water is drained
+until it reaches the <code>lowWatermark</code> again. Similarly, the connection manager within Hornet will start trimming away
+connections to peers if <code>highWatermark</code> peers are connected until it reaches <code>lowWatermark</code> count of peers. These
+watermarks exist for a certain buffer number of peers to be connected, to which not necessarily a gossip protocol is
+being done.</p>
 <div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h2 id="how-to-run-hornet-as-a-verifier-node"><a class="header" href="#how-to-run-hornet-as-a-verifier-node">How to run Hornet as a verifier node</a></h2>
 <blockquote>
 <p>A verifier node is a node which validates receipts. Receipts are an integral component of the
