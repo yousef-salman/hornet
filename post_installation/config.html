@@ -261,7 +261,10 @@
 </tbody></table>
 <p>Example:</p>
 <pre><code class="language-json">  &quot;restAPI&quot;: {
-    &quot;authEnabled&quot;: false,
+    &quot;jwtAuth&quot;: {
+      &quot;enabled&quot;: false,
+      &quot;salt&quot;: &quot;HORNET&quot;
+    },
     &quot;excludeHealthCheckFromAuth&quot;: false,
     &quot;permittedRoutes&quot;: [
       &quot;/health&quot;,
