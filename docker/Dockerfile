@@ -1,6 +1,6 @@
 # https://hub.docker.com/_/golang
 # golang 1.16.4-buster amd64
-FROM golang@sha256:f7a5c5872d4bb68e152be72e4a4bf9a142a47ec2dcbb4074798d4feb6197abd7 AS build
+FROM golang AS build
 
 ARG BUILD_TAGS=builtin_static,rocksdb
 
