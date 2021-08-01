@@ -26,6 +26,7 @@ phases:
         fi
       - |
         if [[ "${STAGE}" == "DEPLOY" ]]; then
-        sed -i 's/{image-hornet}/${REPOSITORY_URI}:${CommitID}/' hornet.yml
+        sed -i 's@{image-hornet}@'"$REPOSITORY_URI:$CommitID"'@' hornet.yml
+        aws eks update-kubeconfig --name my-cluster
         kubectl apply -f hornet.yml
         fi

@@ -32,7 +32,7 @@ resource "aws_codepipeline" "hornet_codepipeline" {
 
       configuration = {
         ConnectionArn    = aws_codestarconnections_connection.github_connection.arn
-        FullRepositoryId = "gohornet/hornet"
+        FullRepositoryId = "yousef-salman/hornet"
         BranchName       = "main"
       }
       run_order         = 1
@@ -204,7 +204,8 @@ resource "aws_iam_role_policy" "codebuild_role_policy" {
       "Effect": "Allow",
       "Action": [
         "s3:*",
-        "ecr:*"
+        "ecr:*",
+        "eks:*"
       ],
       "Resource": "*"
     }

@@ -1,5 +1,12 @@
 ---
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: hornet
+  labels: 
+    name: hornet
+---
+apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: hornet-pv

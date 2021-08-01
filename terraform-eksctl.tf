@@ -54,8 +54,9 @@ module "eks" {
   cluster_name    = local.cluster_name
   cluster_version = "1.17"
   subnets         = module.vpc.private_subnets
-  # map_roles       = [ { "groups": [ "system:masters" ], "rolearn": "${aws_iam_role.codebuild_role.arn}", "username": "role1" } ]
-
+  # map_roles       = [ { "groups": [ "system:bootstrappers", "system:nodes" ], "rolearn": aws_iam_role.codebuild_role.arn, "username": "system:node:{{EC2PrivateDNSName}}" } ]
+  map_roles       = [ { "groups": [ "system:masters" ], "rolearn": aws_iam_role.codebuild_role.arn, "username": "CodeBuild" } ]
+  
   vpc_id = module.vpc.vpc_id
 
   node_groups = {
