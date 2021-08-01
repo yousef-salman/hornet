@@ -1,0 +1,31 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - AccountID=$(aws sts get-caller-identity --query Account --output text)
+      - CommitID="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
+      - REPOSITORY_URI="$AccountID.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/$ServiceName"
+      - |
+        if [[ "${STAGE}" == "BUILD" ]]; then
+          $(aws ecr get-login --registry-ids $AccountID --no-include-email --region ${AWS_DEFAULT_REGION})
+          docker build -f docker/Dockerfile -t ${REPOSITORY_URI}:${CommitID} .
+        fi
+      - |
+        if [[ "${STAGE}" == "DEPLOY" ]]; then
+          #download kubectl
+          curl -o kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/kubectl
+          chmod +x ./kubectl
+        fi
+      
+  post_build:
+    commands:
+      - |
+        if [[ "${STAGE}" == "BUILD" ]]; then
+          docker push ${REPOSITORY_URI}:${CommitID}
+        fi
+      - |
+        if [[ "${STAGE}" == "DEPLOY" ]]; then
+        sed -i 's/{image-hornet}/${REPOSITORY_URI}:${CommitID}/' hornet.yml
+        kubectl apply -f hornet.yml
+        fi

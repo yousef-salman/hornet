@@ -1,0 +1,124 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: hornet-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hornet-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hornet
+  namespace: hornet
+  labels:
+    app: hornet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hornet
+  template:
+    metadata:
+      labels:
+        app: hornet
+    spec:
+      terminationGracePeriodSeconds: 240
+      hostNetwork: false
+      containers:
+      - name: hornet
+        image: "{image-hornet}"
+        ports:
+          - name: dashboard
+            protocol: TCP
+            containerPort: 8081
+          - name: api
+            protocol: TCP
+            containerPort: 14265
+          - name: peering
+            protocol: TCP
+            containerPort: 31200
+          - name: autopeering
+            protocol: UDP
+            containerPort: 31201
+        livenessProbe:
+          tcpSocket:
+            port: 15600
+          initialDelaySeconds: 120
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 2
+        readinessProbe:
+          tcpSocket:
+            port: 15600
+          initialDelaySeconds: 20
+          timeoutSeconds: 2
+          periodSeconds: 10
+          failureThreshold: 2
+        command:
+          - "/bin/sh"
+          - "-ec"
+          - |
+            mkdir -p /app/db/snapshot /app/db/mainnetdb /app/db/coordinator
+            exec /sbin/tini -s -- /app/hornet -c config
+        volumeMounts:
+        - name: db
+          mountPath: "/app/db"
+        - name: mainconfig
+          mountPath: "/app/config"
+      securityContext:
+        fsGroup: 39999
+      volumes:
+      - name: db
+        persistentVolumeClaim:
+          claimName: hornet-claim
+      - name: mainconfig
+        secret:
+          secretName: hornet-config
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: hornet-service
+  namespace: hornet
+spec:
+  selector:
+    app: hornet
+  ports:
+    - protocol: TCP
+      port: 14265
+      nodePort: 31115
+      name: api
+    - protocol: TCP
+      port: 8081
+      nodePort: 31111
+      name: dashboard
+    - protocol: TCP
+      port: 31200
+      nodePort: 31200
+      name: peering
+    - protocol: UDP
+      port: 31201
+      nodePort: 31201
+      name: autopeering
+  type: NodePort
