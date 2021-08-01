@@ -45,7 +45,6 @@ coordinator.state
 # Docs
 book
 
-*.tf
 *.tfstate
 *.backup
 .terraform
