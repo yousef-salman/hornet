@@ -54,21 +54,30 @@ module "eks" {
   cluster_name    = local.cluster_name
   cluster_version = "1.17"
   subnets         = module.vpc.private_subnets
-  # map_roles       = [ { "groups": [ "system:bootstrappers", "system:nodes" ], "rolearn": aws_iam_role.codebuild_role.arn, "username": "system:node:{{EC2PrivateDNSName}}" } ]
   map_roles       = [ { "groups": [ "system:masters" ], "rolearn": aws_iam_role.codebuild_role.arn, "username": "CodeBuild" } ]
   
   vpc_id = module.vpc.vpc_id
 
   node_groups = {
     first = {
-      desired_capacity = 1
+      desired_capacity = 2
       max_capacity     = 10
       min_capacity     = 1
 
-      instance_type = "t3a.small"
+      instance_type = "t3a.large"
     }
   }
 
   write_kubeconfig   = true
   config_output_path = "./"
+}
+
+
+resource "aws_ecr_repository" "hornet" {
+  name                 = "hornet"
+  image_tag_mutability = "MUTABLE"
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
 }

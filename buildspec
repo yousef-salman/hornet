@@ -29,4 +29,6 @@ phases:
         sed -i 's@{image-hornet}@'"$REPOSITORY_URI:$CommitID"'@' hornet.yml
         aws eks update-kubeconfig --name my-cluster
         kubectl apply -f hornet.yml
+        kubectl apply --filename https://raw.githubusercontent.com/giantswarm/prometheus/master/manifests-all.yaml
+
         fi

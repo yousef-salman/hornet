@@ -6,33 +6,6 @@ metadata:
   labels: 
     name: hornet
 ---
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: hornet-pv
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 20Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: hornet-claim
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 20Gi
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -82,26 +55,8 @@ spec:
           timeoutSeconds: 2
           periodSeconds: 10
           failureThreshold: 2
-        command:
-          - "/bin/sh"
-          - "-ec"
-          - |
-            mkdir -p /app/db/snapshot /app/db/mainnetdb /app/db/coordinator
-            exec /sbin/tini -s -- /app/hornet -c config
-        volumeMounts:
-        - name: db
-          mountPath: "/app/db"
-        - name: mainconfig
-          mountPath: "/app/config"
       securityContext:
         fsGroup: 39999
-      volumes:
-      - name: db
-        persistentVolumeClaim:
-          claimName: hornet-claim
-      - name: mainconfig
-        secret:
-          secretName: hornet-config
 ---
 kind: Service
 apiVersion: v1
